@@ -18,6 +18,7 @@ const Div = styled.div<CSSProperties>`
   ${({ flexWrap }) => flexWrap && `flex-wrap : ${flexWrap}`};
   ${({ flexShrink }) => flexShrink && `flex-shrink : ${flexShrink}`};
   ${({ alignItems }) => alignItems && `align-items : ${alignItems}`};
+  flex-grow: ${({ flexGrow }) => flexGrow};
 
   vertical-align: ${({ verticalAlign }) => verticalAlign};
   text-align: ${({ textAlign }) => textAlign};

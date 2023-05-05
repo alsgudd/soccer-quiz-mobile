@@ -3,8 +3,8 @@ import styled, { CSSProperties } from 'styled-components';
 import { getQueryData, isIosNotch } from 'src/utils';
 
 const SFixedFooterOverlappedDiv = styled.div<CSSProperties & FixedFooterProps>`
-  // height: ${() => (isIosNotch() ? '96px' : '80px')};
-  height: 80px;
+  height: ${() => (isIosNotch() ? '96px' : '80px')};
+  // height: 80px;
   width: 100%;
 `;
 
