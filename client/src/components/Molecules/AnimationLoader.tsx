@@ -37,3 +37,5 @@ const AnimationLoader = ({ name, path, size }: AnimationLoaderProps) => {
     />
   )
 }
+
+export default AnimationLoader;
