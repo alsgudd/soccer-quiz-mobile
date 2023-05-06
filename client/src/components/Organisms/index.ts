@@ -10,6 +10,7 @@ import ResultsFooter from './ResultsFooter';
 import ScoreChart from './ScoreChart';
 import TitleAnimation from './TitleAnimation';
 import TrophyNumbers from './TrophyNumbers';
+import LoginForm from './LoginForm';
 
 export {
   Duration,
@@ -24,4 +25,5 @@ export {
   ScoreChart,
   TitleAnimation,
   TrophyNumbers,
+  LoginForm
 };

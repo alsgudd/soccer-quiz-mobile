@@ -10,7 +10,7 @@ import SubTitle from './SubTitle';
 import Title from './Title';
 import Ul from './Ul';
 
-export default {
+const Atoms = {
   Button,
   Checkbox,
   Div,
@@ -22,4 +22,5 @@ export default {
   SubTitle,
   Title,
   Ul,
-};
+}
+export default Atoms;

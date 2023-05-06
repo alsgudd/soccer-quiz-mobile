@@ -11,6 +11,7 @@ import {
   QuizPage,
   ResultsPage,
   ShimmerPage,
+  LoginPage
 } from 'src/components/Pages';
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
         <Routes>
           <Route path={`/${QUIZ_PAGENAME}`} element={<QuizPage />} />
           <Route path={`/${RESULT_PAGENAME}`} element={<ResultsPage />} />
+          <Route path="/login" element={ <LoginPage /> } />
           <Route path="/" element={<LandingPage />} />
         </Routes>
       </Suspense>
