@@ -11,6 +11,10 @@ import ScoreChart from './ScoreChart';
 import TitleAnimation from './TitleAnimation';
 import TrophyNumbers from './TrophyNumbers';
 import LoginForm from './LoginForm';
+import LoginTitleAnimation from './LoginTitleAnimation';
+import SignUpTitleAnimation from './SignUpTitleAnimation';
+
+
 
 export {
   Duration,
@@ -25,5 +29,7 @@ export {
   ScoreChart,
   TitleAnimation,
   TrophyNumbers,
-  LoginForm
+  LoginForm,
+  LoginTitleAnimation,
+  SignUpTitleAnimation
 };
