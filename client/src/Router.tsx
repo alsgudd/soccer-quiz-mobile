@@ -3,7 +3,6 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-
 import { QUIZ_PAGENAME, RESULT_PAGENAME } from 'src/constant';
 import {
   ErrorBoundary,
@@ -11,7 +10,8 @@ import {
   QuizPage,
   ResultsPage,
   ShimmerPage,
-  LoginPage
+  LoginPage,
+  SignUpPage
 } from 'src/components/Pages';
 
 function Router() {
@@ -22,6 +22,7 @@ function Router() {
           <Route path={`/${QUIZ_PAGENAME}`} element={<QuizPage />} />
           <Route path={`/${RESULT_PAGENAME}`} element={<ResultsPage />} />
           <Route path="/login" element={ <LoginPage /> } />
+          <Route path="/signup" element={ <SignUpPage /> } />
           <Route path="/" element={<LandingPage />} />
         </Routes>
       </Suspense>
