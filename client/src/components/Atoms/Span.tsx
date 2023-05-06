@@ -38,6 +38,8 @@ const Span = styled.span<React.CSSProperties>`
   ${({ lineHeight }) => lineHeight && `line-height : ${lineHeight}`};
   ${({ boxShadow }) => boxShadow && `box-shadow : ${boxShadow}`};
   ${({ textAlign }) => textAlign && `text-align : ${textAlign}`};
+  ${({ cursor }) => cursor && `cursor : ${cursor}`};
+
 `;
 
 export default Span;

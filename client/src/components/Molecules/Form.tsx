@@ -1,35 +1,31 @@
 import { ReactNode } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import Atoms from "components/Atoms";
 
 export type FormProps = {
   height?: string;
   marginTop?: string;
-  TypeofForm: string;
   children?: ReactNode;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const SForm = styled.form`
+const SForm = styled.form<CSSProperties>`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
   background-color: var(--white);
+  height: ${({ height }) => height || "400px"};
 `
 
-const Form = ({ height, marginTop, TypeofForm, children }: FormProps) => {
+const Form = ({ height, marginTop, children }: FormProps) => {
   return (
-    <SForm>
-      <Atoms.SubTitle
-        textAlign="center"
-
-      >{`${TypeofForm} Form`}</Atoms.SubTitle>
+    <SForm height={height}>
       <Atoms.Div
         display="flex"
         flexDirection="column"
-        alignItems="center"
-        justifyContent="space-between"
+        alignItems="left"
+        justifyContent="start"
         height="100%"
         marginTop="20px"
       >
