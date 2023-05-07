@@ -4,6 +4,7 @@ import addCorrectAnswerRandomly from "./addCorrectAnswerRandomly";
 import customAxios from "./customAxios";
 import decodeHtml from "./decodeHtml";
 import validateLogin from "./validateLogin";
+import validateSignUp from "./validateSignUp";
 
 export {
   getQueryData,
@@ -11,5 +12,6 @@ export {
   addCorrectAnswerRandomly,
   customAxios,
   decodeHtml,
-  validateLogin
+  validateLogin,
+  validateSignUp
 }
