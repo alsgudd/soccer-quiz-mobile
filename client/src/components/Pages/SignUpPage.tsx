@@ -1,5 +1,6 @@
 import { 
-  SignUpTitleAnimation
+  SignUpTitleAnimation,
+  SignUpForm
 } from "components/Organisms"
 
 
@@ -8,7 +9,7 @@ const SignUpPage = () => {
   return (
     <>
       <SignUpTitleAnimation />
-    
+      <SignUpForm />
     </>
   )
 }

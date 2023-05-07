@@ -2,8 +2,10 @@ import { error } from "console";
 import React, { useState, useEffect, useCallback } from "react";
 
 interface FormProps {
+  name?: string;
   email?: string;
   password?: string;
+  confirmPassword?: string;
 }
 interface ErrorType {
   email?: string;

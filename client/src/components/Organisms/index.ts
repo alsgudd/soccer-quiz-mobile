@@ -13,7 +13,7 @@ import TrophyNumbers from './TrophyNumbers';
 import LoginForm from './LoginForm';
 import LoginTitleAnimation from './LoginTitleAnimation';
 import SignUpTitleAnimation from './SignUpTitleAnimation';
-
+import SignUpForm from './SignUpForm';
 
 
 export {
@@ -31,5 +31,6 @@ export {
   TrophyNumbers,
   LoginForm,
   LoginTitleAnimation,
-  SignUpTitleAnimation
+  SignUpTitleAnimation,
+  SignUpForm
 };
