@@ -8,6 +8,7 @@ interface FormProps {
   confirmPassword?: string;
 }
 interface ErrorType {
+  name?: string;
   email?: string;
   password?: string;
 }
@@ -23,22 +24,25 @@ function useForm({
   validate
 }: useFormArg) {
   const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<ErrorType>({});
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setValues({ ...values, [name] : value });
   }
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    setSubmitting(true);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(123);
     event.preventDefault();
-    await new Promise((r) => setTimeout(r, 1000));
+    setSubmitting(true);
+    // await new Promise((r) => setTimeout(r, 1000));
     setErrors(validate(values));
   }
 
   const onSubmitting = useCallback(() => {
+    console.log(1);
     if(submitting) {
+      console.log(2);
       if(Object.keys(errors).length === 0) {
         onSubmit(values);
       }

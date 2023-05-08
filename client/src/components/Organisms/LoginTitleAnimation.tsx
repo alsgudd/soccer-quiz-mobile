@@ -14,10 +14,9 @@ const LoginTitleAnimation = () => {
   return (
     <Content
       marginTop="0px"
-      height={`calc(100% - 240px - 124px - ${isIosNotch() ? '96px' : '80px'})`}
+      height={`calc(100% - 124px - 124px - ${isIosNotch() ? '96px' : '80px'})`}
       header={FaHomeIcon}
     >
-
       <Atoms.Div
         display="flex"
         flexDirection="column"

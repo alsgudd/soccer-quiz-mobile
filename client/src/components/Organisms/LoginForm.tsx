@@ -21,7 +21,7 @@ const LoginForm = () => {
 
   return (
     <Content>
-      <Form height="400px" handleSubmit={handleSubmit}>
+      <Form height="300px" onSubmit={handleSubmit}>
         <Atoms.Span>Email</Atoms.Span>
         <Atoms.Input
           type="email"

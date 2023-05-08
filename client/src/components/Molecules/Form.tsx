@@ -6,7 +6,7 @@ export type FormProps = {
   height?: string;
   marginTop?: string;
   children?: ReactNode;
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
 const SForm = styled.form<CSSProperties>`
@@ -18,9 +18,9 @@ const SForm = styled.form<CSSProperties>`
   height: ${({ height }) => height || "400px"};
 `
 
-const Form = ({ height, marginTop, children }: FormProps) => {
+const Form = ({ height, marginTop, children, onSubmit }: FormProps) => {
   return (
-    <SForm height={height}>
+    <SForm height={height} onSubmit={onSubmit}>
       <Atoms.Div
         display="flex"
         flexDirection="column"
