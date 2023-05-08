@@ -1,15 +1,22 @@
-const connectdb = require('./db/connectdb')
-const express = require('express');
-const app = express();
-const path = require('path');
-const PORT = process.env.PORT;
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+import dotenv from 'dotenv'
+import connectdb from './db/connectdb.js';
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import authRouter from './routers/auth.js'
+import cors from 'cors'
+import { fileURLToPath } from "url";   // 👈 추가
 
-require('dotenv').config();
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT;
+
+
 
 app.use(express.json());
-var cors = require('cors');
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET', 'POST'],
@@ -20,8 +27,13 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.use('/auth', authRouter);
+
+
 app.listen(8080, function () {
   console.log(`listening on ${PORT}`);
+  // console.log(PORT);
   connectdb();
 });
 
