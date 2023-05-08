@@ -35,7 +35,7 @@ const signUp = async (req, res) => {
   try {
     // console.log(found);
     if (await isemailExist(req.body.email)) {
-      throw new Error('해당 이메일이 이미 존재합니다.');
+      throw new Error('The email already exist! Please use another email.');
     }
     let temp = await createHashedPassword(req.body.password);
     let secretPW = temp.hashedPassword;
@@ -48,9 +48,13 @@ const signUp = async (req, res) => {
       salt: salt
     }
     await collection.insertOne(insertData);
+    res.status(200).json("signUp Success!")
     console.log(`${req.body} is inserted!`);
   } catch (e) {
-    res.status(400).json(e)
+    console.log(e);
+    // res.status(400).json(e)
+    res.status(400).json({ error: 'The email already exist! Please use another email.'})
+
   }
 }
 

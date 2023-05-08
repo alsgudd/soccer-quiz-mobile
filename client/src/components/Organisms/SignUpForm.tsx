@@ -1,10 +1,12 @@
+import axios from "axios";
 import Atoms from "components/Atoms";
 import { Content, Form } from "components/Molecules";
 import { useForm } from "src/hooks";
-import { validateSignUp, mycustomAxios } from "src/utils";
-
+import { validateSignUp } from "src/utils";
+import { useNavigate } from "react-router";
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
   const {
     values,
     errors,
@@ -24,14 +26,20 @@ const SignUpForm = () => {
         email: values.email,
         password: values.password
       }
-      mycustomAxios.post('/auth/signup', body)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => {
-          console.log(e);
-        })
-
+      axios({
+        url: `${process.env.REACT_APP_SERVER_URL}/auth/signup`,
+        method: "POST",
+        data: body
+      }).then((response) => {
+        console.log(response.data);
+        window.alert('SignUp Success! Please Login😊');
+        navigate('/login');
+      }).catch((e) => {
+        console.log(e);
+        if(e.response.data.error) {
+          window.alert(e.response.data.error);
+        }
+      })
     },
     validate: validateSignUp
   });

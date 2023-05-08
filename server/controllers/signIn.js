@@ -1,11 +1,19 @@
 import util from 'util'
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto'
+import { isemailExist } from './signUp.js';
+import { MongoClient } from 'mongodb';
+
+const MONGO_URI = process.env.MONGO_URI;
+const DB_NAME = process.env.DATABASE_NAME
+
+const client = new MongoClient(MONGO_URI);
+const db = client.db(DB_NAME);
+const collection = db.collection('userInfo');
+
 
 const randomBytesPromise = util.promisify(crypto.randomBytes);
 const pbkdf2Promise = util.promisify(crypto.pbkdf2);
-
-
-import { isemailExist } from './signUp';
 
 // login Part!
 const verifyPassword = async (password, userSalt, userPassword) => {
@@ -23,7 +31,7 @@ const foundUserInfo = async (email) => {
 }
 
 
-const login = async (req, res) => {
+const signIn = async (req, res) => {
   try {
     if (!await isemailExist(req.body.email)) throw 402;
     const userInfo = await foundUserInfo(req.body.email);
@@ -47,7 +55,7 @@ const login = async (req, res) => {
       })
       res.status(200).json({
         name: userInfo.name,
-        message: '로그인 성공하였습니다.'
+        message: 'login Success!'
       });
     } catch (error) {
       res.status(500).json(error);
@@ -55,15 +63,15 @@ const login = async (req, res) => {
   } catch (errorcode) {
     if (errorcode === 402) {
       // 유저가 입력한 이메일이 없는 경우
-      res.status(errorcode).json({ message: '해당 Email이 존재하지 않습니다.' });
+      res.status(errorcode).json({ error: 'The email does not exist.' });
     } else if (errorcode === 403) {
       // 유저가 입력한 비밀번호가 일치하지 않는 경우
-      res.status(errorcode).json({ message: '비밀번호가 맞지 않습니다' })
+      res.status(errorcode).json({ error: 'Password does not match' })
     } else {
-      res.status(500).json(error)
+      res.status(500).json({ error: 'An unknown error has occurred. Please try again' })
     }
 
   }
 }
 
-export default login;
+export default signIn;

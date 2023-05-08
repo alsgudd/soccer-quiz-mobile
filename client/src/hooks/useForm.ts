@@ -1,4 +1,3 @@
-import { error } from "console";
 import React, { useState, useEffect, useCallback } from "react";
 
 interface FormProps {
@@ -32,7 +31,6 @@ function useForm({
     setValues({ ...values, [name] : value });
   }
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(123);
     event.preventDefault();
     setSubmitting(true);
     // await new Promise((r) => setTimeout(r, 1000));
@@ -40,9 +38,7 @@ function useForm({
   }
 
   const onSubmitting = useCallback(() => {
-    console.log(1);
     if(submitting) {
-      console.log(2);
       if(Object.keys(errors).length === 0) {
         onSubmit(values);
       }

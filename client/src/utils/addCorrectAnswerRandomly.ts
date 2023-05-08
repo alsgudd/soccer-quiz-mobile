@@ -1,4 +1,4 @@
-export default (incorrectAnswers: string[], correctAnswer: string) => {
+const addCorrectAnswerRandomly = (incorrectAnswers: string[], correctAnswer: string) => {
   const examples = [...incorrectAnswers];
   examples.splice(
     Math.floor(Math.random() * incorrectAnswers.length + 1),
@@ -7,3 +7,8 @@ export default (incorrectAnswers: string[], correctAnswer: string) => {
   );
   return examples;
 };
+
+export default addCorrectAnswerRandomly;
+
+
+

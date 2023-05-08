@@ -24,7 +24,7 @@ export type TResponseData = {
 };
 
 export default selector<TResponseData>({
-  key: 'initilaOrderState',
+  key: 'initialOrderState',
   get: async ({ get }) => {
     const queryData = get(QueryDataState);
     if (
@@ -44,6 +44,7 @@ export default selector<TResponseData>({
         type: 'multiple',
       },
     });
+    console.log(response);
     const decodedResponseData = {
       ...response.data,
       results: response.data.results.map((quiz: TQuiz) => {
@@ -51,6 +52,8 @@ export default selector<TResponseData>({
         const decoded_incorrect_answers = quiz.incorrect_answers.map((answer) =>
           decodeHtml(answer),
         );
+        console.log(decoded_correct_answer);
+        console.log(decoded_incorrect_answers);
         return {
           ...quiz,
           question: decodeHtml(quiz.question),
@@ -63,6 +66,7 @@ export default selector<TResponseData>({
         };
       }),
     };
+    console.log(decodedResponseData);
     return decodedResponseData;
   },
   set: ({ get, set }) => {

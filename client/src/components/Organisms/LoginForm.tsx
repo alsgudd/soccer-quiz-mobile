@@ -1,21 +1,44 @@
+import axios from "axios";
 import Atoms from "components/Atoms";
 import { Content, Form } from "components/Molecules";
 import { useNavigate } from "react-router";
 import { useForm } from "src/hooks";
 import { validateLogin } from "src/utils";
 
+
+
 const LoginForm = () => {
   const navigate = useNavigate();
 
-  const { 
-    values, 
-    errors, 
-    submitting, 
-    handleChange, 
-    handleSubmit 
+  const {
+    values,
+    errors,
+    submitting,
+    handleChange,
+    handleSubmit
   } = useForm({
     initialValues: { email: "", password: "" },
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      const body = {
+        email: values.email,
+        password: values.password
+      }
+      axios({
+        url: `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+        method: "POST",
+        withCredentials: true,
+        data: body
+      }).then((response) => {
+        console.log(response);
+        window.alert(`Nice to meet you, ${response.data.name} 👋`);
+        navigate('/');
+      }).catch((e) => {
+        console.log(e);
+        if (e.response.data.error) {
+          window.alert(e.response.data.error);
+        }
+      })
+    },
     validate: validateLogin,
   });
 
@@ -29,13 +52,16 @@ const LoginForm = () => {
           value={values.email}
           onChange={handleChange}
         />
+        {errors.email && <Atoms.Span color="var(--red-400)">{errors.email}</Atoms.Span>}
         <Atoms.Span>Password</Atoms.Span>
         <Atoms.Input
           type="password"
           name="password"
-          value={values.email}
+          value={values.password}
           onChange={handleChange}
         />
+        {errors.password && <Atoms.Span color="var(--red-400)">{errors.password}</Atoms.Span>}
+
         <br />
         <Atoms.Button
           type="submit"
