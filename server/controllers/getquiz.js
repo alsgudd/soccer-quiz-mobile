@@ -19,7 +19,7 @@ const getquiz = async (req, res) => {
   const shuffledQuiz = [...quizArr].sort(shuffle);
   const returnValue = shuffledQuiz.slice(0, amount);
   
-  res.json({results: returnValue});
+  res.send({results: returnValue});
 }
 
 export default getquiz;

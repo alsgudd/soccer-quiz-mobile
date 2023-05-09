@@ -1,20 +1,18 @@
 import { selector } from 'recoil';
+import axios from 'axios';
 
-import { addCorrectAnswerRandomly, customAxios, decodeHtml } from 'src/utils';
+import { addCorrectAnswerRandomly, decodeHtml } from 'src/utils';
 import {
   QueryDataState,
-  QuizDifficultyState,
   QuizNumbersState,
+  QuizTeamState
 } from 'src/recoil';
 import { DEFAULT_NUMBERS, QUIZ_PAGENAME } from 'src/constant';
 
 export type TQuiz = {
-  category: string;
-  difficulty: string;
-  type: string;
   question: string;
   correct_answer: string;
-  incorrect_answers: string[];
+  incorrect_answer: string[];
   examples: string[];
 };
 
@@ -26,6 +24,7 @@ export type TResponseData = {
 export default selector<TResponseData>({
   key: 'initialOrderState',
   get: async ({ get }) => {
+    // queryData가 수정될때마다 server로부터 QuizData를 받아옴.
     const queryData = get(QueryDataState);
     if (
       queryData == undefined ||
@@ -33,23 +32,21 @@ export default selector<TResponseData>({
     )
       return undefined;
 
-    const { amount, difficulty } = queryData;
-
-    const axios = customAxios();
+    const { amount, team } = queryData;
     const response = await axios({
-      method: 'GET',
+      url: `${process.env.REACT_APP_SERVER_URL}/quiz/get`,
+      method: "GET",
       params: {
-        amount,
-        difficulty,
-        type: 'multiple',
-      },
-    });
-    console.log(response);
+        amount: amount,
+        team: team,
+      }
+    })
     const decodedResponseData = {
       ...response.data,
       results: response.data.results.map((quiz: TQuiz) => {
+        console.log(quiz);
         const decoded_correct_answer = decodeHtml(quiz.correct_answer);
-        const decoded_incorrect_answers = quiz.incorrect_answers.map((answer) =>
+        const decoded_incorrect_answers = quiz.incorrect_answer.map((answer) =>
           decodeHtml(answer),
         );
         console.log(decoded_correct_answer);
@@ -65,16 +62,16 @@ export default selector<TResponseData>({
           ),
         };
       }),
-    };
+    }
     console.log(decodedResponseData);
     return decodedResponseData;
   },
   set: ({ get, set }) => {
     const amount = get(QuizNumbersState);
-    const difficulty = get(QuizDifficultyState);
+    const team = get(QuizTeamState);
 
-    set(QueryDataState, { amount, difficulty });
+    set(QueryDataState, { amount, team });
     set(QuizNumbersState, DEFAULT_NUMBERS);
-    set(QuizDifficultyState, undefined);
+    set(QuizTeamState, undefined);
   },
 });

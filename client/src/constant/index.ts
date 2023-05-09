@@ -11,6 +11,14 @@ export const ANY_DIFFICULTY = 'Any Difficulty';
 export const EASY_DIFFICULTY = 'easy';
 export const MEDIUM_DIFFICULTY = 'medium';
 export const HARD_DIFFICULTY = 'hard';
+export const SELECT = 'Select Team'
+export const MCU = 'Manchester United'
+export const MCI = 'ManChester City';
+export const LIV = 'Liverpool'
+export const CHE = 'Chelsea'
+export const TOT = 'Tottenham Hotspur'
+
+
 
 export const CORRECT_COLOR = 'var(--green-400)'
 export const INCORRECT_COLOR = 'var(--red-400)'
@@ -20,6 +28,15 @@ export const difficulties = [
   EASY_DIFFICULTY,
   MEDIUM_DIFFICULTY,
   HARD_DIFFICULTY,
+];
+
+export const teams = [
+  SELECT,
+  MCU,
+  MCI,
+  LIV,
+  CHE,
+  TOT
 ];
 
 export const DIFFICULTY_SELECT_TEST_ID = 'difficulty-select'

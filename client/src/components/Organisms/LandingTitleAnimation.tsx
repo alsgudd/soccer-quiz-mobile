@@ -4,7 +4,7 @@ import { FaSignInAlt, FaRegChartBar } from 'react-icons/fa'
 import Atoms from 'components/Atoms';
 import { useNavigate } from 'react-router-dom';
 
-const TitleAnimation = () => {
+const LandingTitleAnimation = () => {
   const navigate = useNavigate();
   const handleClickToSignIn = () => {
     navigate('/login');
@@ -47,4 +47,4 @@ const TitleAnimation = () => {
   );
 };
 
-export default TitleAnimation;
+export default LandingTitleAnimation;
