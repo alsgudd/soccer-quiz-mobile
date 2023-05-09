@@ -1,16 +1,16 @@
 import {
-  TitleAnimation,
-  QuizNumbers,
-  QuizDifficulty,
+  LandingTitleAnimation,
+  LandingQuizNumbers,
+  LandingQuizTeam,
   LandingFooter,
 } from 'components/Organisms';
 
 const LandingPage = () => {
   return (
     <>
-      <TitleAnimation />
-      <QuizNumbers />
-      <QuizDifficulty />
+      <LandingTitleAnimation />
+      <LandingQuizNumbers />
+      <LandingQuizTeam />
       <LandingFooter />
     </>
   );

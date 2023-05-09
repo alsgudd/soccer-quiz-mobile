@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { TResponseData } from 'src/recoil/InitialProps';
@@ -7,12 +7,14 @@ import {
   CurrentQuizIndexState,
   SelectedAnswerState,
   QuizResultsState,
+  QuizTeamState,
 } from 'src/recoil';
 import { Content } from 'components/Molecules';
 import Atoms from 'components/Atoms';
 import { EXAMPLE_LABEL_TEST_ID } from 'src/constant';
 
 const Quiz = () => {
+  const currentQuizTeam = useRecoilValue(QuizTeamState)
   const initialProps = useRecoilValue(InitialPropsState);
   const currentQuizIndex = useRecoilValue(CurrentQuizIndexState);
   const currentQuiz = (initialProps as TResponseData).results[currentQuizIndex];
@@ -23,13 +25,6 @@ const Quiz = () => {
   const startTime = useRef(Date.now());
 
   const handleChange = (e: any) => {
-    //여기 오답노트 만들자리
-    // if (e.target.name != currentQuiz) {
-    // const correctAnswersJSON = localStorage.getItem('cuiz_correct_answer');
-    // const correctAnswers =
-    //   correctAnswersJSON && JSON.parse(correctAnswersJSON);
-    //}
-
     setSelectedAnswer(e.target.name);
     setQuizResults((prev) => [
       ...prev,
@@ -52,7 +47,7 @@ const Quiz = () => {
       header={`QUIZ ${currentQuizIndex + 1} / ${
         (initialProps as TResponseData).results.length
       }`}
-      headerRight={currentQuiz.difficulty}
+      headerRight={currentQuizTeam}
     >
       <Atoms.Div
         display="flex"

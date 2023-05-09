@@ -5,6 +5,7 @@ import QuizDifficultyState from './QuizDifficulty';
 import QuizResultsState from './QuizResults';
 import QuizNumbersState from './QuizNumbers';
 import SelectedAnswerState from './SelectedAnswer';
+import QuizTeamState from './QuizTeam';
 
 export {
   CurrentQuizIndexState,
@@ -14,4 +15,5 @@ export {
   QuizResultsState,
   QuizNumbersState,
   SelectedAnswerState,
+  QuizTeamState
 };

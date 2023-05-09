@@ -5,7 +5,7 @@ import { QuizNumbersState } from 'src/recoil';
 import { Content } from 'components/Molecules';
 import Atoms from 'components/Atoms';
 
-const QuizNumbers = () => {
+const LandingQuizNumbers = () => {
   const [quizNumbers, setQuizNumbers] = useRecoilState(QuizNumbersState);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -13,12 +13,12 @@ const QuizNumbers = () => {
   };
 
   return (
-    <Content header="Number of QUIZs(1 ~ 50)">
+    <Content header="Number of QUIZs(1 ~ 10)">
       <Atoms.Input
         type="number"
         placeholder="eg. 10"
-        min={1}
-        max={50}
+        min='1'
+        max='10'
         margin="16px 0px"
         value={quizNumbers}
         onChange={handleChange}
@@ -27,4 +27,4 @@ const QuizNumbers = () => {
   );
 };
 
-export default QuizNumbers;
+export default LandingQuizNumbers;
