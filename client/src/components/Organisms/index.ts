@@ -6,15 +6,17 @@ import LandingQuizTeam from './LandingQuizTeam';
 import LandingQuizNumbers from './LandingQuizNumbers';
 import LandingTitleAnimation from './LandingTitleAnimation';
 
-
-import OrganismShimmer from './OrganismShimmer';
+// Organism of QuizPage
 import Quiz from './Quiz';
-
 import QuizFooter from './QuizFooter';
 import QuizResult from './QuizResult';
+
+// Organism of ResultPage
 import ResultsFooter from './ResultsFooter';
 import ScoreChart from './ScoreChart';
 import TrophyNumbers from './TrophyNumbers';
+
+// Organism of AuthPage
 import LoginForm from './LoginForm';
 import LoginTitleAnimation from './LoginTitleAnimation';
 import SignUpTitleAnimation from './SignUpTitleAnimation';
@@ -27,7 +29,6 @@ export {
   LandingQuizTeam,
   LandingQuizNumbers,  
   LandingTitleAnimation,
-  OrganismShimmer,
   Quiz,
   QuizFooter,
   QuizResult,

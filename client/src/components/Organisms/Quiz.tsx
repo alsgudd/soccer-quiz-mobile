@@ -14,7 +14,7 @@ import Atoms from 'components/Atoms';
 import { EXAMPLE_LABEL_TEST_ID } from 'src/constant';
 
 const Quiz = () => {
-  const currentQuizTeam = useRecoilValue(QuizTeamState)
+  const currentQuizTeam = useRecoilValue(QuizTeamState);
   const initialProps = useRecoilValue(InitialPropsState);
   const currentQuizIndex = useRecoilValue(CurrentQuizIndexState);
   const currentQuiz = (initialProps as TResponseData).results[currentQuizIndex];
@@ -31,7 +31,7 @@ const Quiz = () => {
       {
         index: currentQuizIndex,
         duration: Date.now() - startTime.current,
-        correct: e.target.name == currentQuiz.correct_answer,
+        correct: e.target.name === currentQuiz.correct_answer,
       },
     ]);
   };
@@ -60,17 +60,17 @@ const Quiz = () => {
           <Atoms.Ul>
             {currentQuiz.examples.map((answer: string, i: number) => (
               <Atoms.Li key={answer} value={answer}>
-                <Atoms.Checkbox
-                  id={answer}
-                  name={answer}
-                  disabled={selectedAnswer != undefined}
-                  onChange={handleChange}
-                />
                 <Atoms.Label
                   data-testid={EXAMPLE_LABEL_TEST_ID + i}
-                  isSelected={selectedAnswer == answer}
-                  isCorrect={selectedAnswer == currentQuiz.correct_answer}
+                  isSelected={selectedAnswer === answer}
+                  isCorrect={selectedAnswer === currentQuiz.correct_answer}
                 >
+                  <Atoms.Checkbox
+                  id={answer}
+                  name={answer}
+                  disabled={selectedAnswer !== undefined}
+                  onChange={handleChange}
+                />
                   {answer}
                 </Atoms.Label>
               </Atoms.Li>
