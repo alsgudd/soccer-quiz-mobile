@@ -1,7 +1,7 @@
 import { selector } from 'recoil';
 import axios from 'axios';
 
-import { addCorrectAnswerRandomly, decodeHtml } from 'src/utils';
+import { decodeHtml } from 'src/utils';
 import {
   QueryDataState,
   QuizNumbersState,
@@ -17,7 +17,6 @@ export type TQuiz = {
 };
 
 export type TResponseData = {
-  response_code: number;
   results: TQuiz[];
 };
 
@@ -27,8 +26,8 @@ export default selector<TResponseData>({
     // queryData가 수정될때마다 server로부터 QuizData를 받아옴.
     const queryData = get(QueryDataState);
     if (
-      queryData == undefined ||
-      window.location.pathname != `/${QUIZ_PAGENAME}`
+      queryData === undefined ||
+      window.location.pathname !== `/${QUIZ_PAGENAME}`
     )
       return undefined;
 
@@ -49,21 +48,18 @@ export default selector<TResponseData>({
         const decoded_incorrect_answers = quiz.incorrect_answer.map((answer) =>
           decodeHtml(answer),
         );
-        console.log(decoded_correct_answer);
-        console.log(decoded_incorrect_answers);
+        const decoded_examples = quiz.examples.map((example) => 
+          decodeHtml(example),
+        )
         return {
           ...quiz,
           question: decodeHtml(quiz.question),
           correct_answer: decoded_correct_answer,
           incorrect_answers: decoded_incorrect_answers,
-          examples: addCorrectAnswerRandomly(
-            decoded_incorrect_answers,
-            decoded_correct_answer,
-          ),
+          examples: decoded_examples
         };
       }),
     }
-    console.log(decodedResponseData);
     return decodedResponseData;
   },
   set: ({ get, set }) => {

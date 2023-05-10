@@ -12,11 +12,11 @@ export const EASY_DIFFICULTY = 'easy';
 export const MEDIUM_DIFFICULTY = 'medium';
 export const HARD_DIFFICULTY = 'hard';
 export const SELECT = 'Select Team'
-export const MCU = 'Manchester United'
-export const MCI = 'ManChester City';
+export const MCU = 'ManchesterUnited'
+export const MCI = 'ManchesterCity';
 export const LIV = 'Liverpool'
 export const CHE = 'Chelsea'
-export const TOT = 'Tottenham Hotspur'
+export const TOT = 'Tottenham'
 
 
 

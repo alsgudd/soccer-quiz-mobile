@@ -4,7 +4,6 @@ import Router from 'src/Router';
 import reportWebVitals from 'src/reportWebVitals';
 import GlobalStyles from 'src/style/GlobalStyles';
 import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot } from "recoil";
 
 const root = ReactDOM.createRoot(

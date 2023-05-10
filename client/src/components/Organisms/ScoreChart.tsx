@@ -46,7 +46,7 @@ const ScoreChart = () => {
                 <Cell
                   key={`cell-${index}`}
                   fill={
-                    entry.name == correctAnswersName
+                    entry.name === correctAnswersName
                       ? CORRECT_COLOR
                       : INCORRECT_COLOR
                   }
@@ -62,13 +62,13 @@ const ScoreChart = () => {
               margin="8px 0px"
               fontSize="14px"
               color={
-                entry.name == correctAnswersName
+                entry.name === correctAnswersName
                   ? CORRECT_COLOR
                   : INCORRECT_COLOR
               }
             >
               {`${entry.name} : ${
-                entry.name == correctAnswersName
+                entry.name === correctAnswersName
                   ? correctQuizNumbers
                   : quizResults.length - correctQuizNumbers
               }`}
