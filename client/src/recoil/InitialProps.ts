@@ -23,7 +23,7 @@ export type TResponseData = {
 export default selector<TResponseData>({
   key: 'initialOrderState',
   get: async ({ get }) => {
-    // queryData가 수정될때마다 server로부터 QuizData를 받아옴.
+    // queryData가 수정될때마다 아래 코드를 실행
     const queryData = get(QueryDataState);
     if (
       queryData === undefined ||
