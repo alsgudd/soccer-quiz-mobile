@@ -1,8 +1,10 @@
 import { isIosNotch } from 'src/utils';
 import { AnimationLoader, Content } from 'components/Molecules';
-import { FaSignInAlt, FaRegChartBar } from 'react-icons/fa'
+import { FaSignInAlt, FaRegChartBar, FaUser } from 'react-icons/fa'
 import Atoms from 'components/Atoms';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { UserNameState } from 'src/recoil';
 
 const LandingTitleAnimation = () => {
   const navigate = useNavigate();
@@ -12,20 +14,29 @@ const LandingTitleAnimation = () => {
   const handleClickToShowChart = () => {
     navigate('/chart');
   }
+  const handleClickToMyPage = () => {
+    navigate('/mypage');
+  }
 
+  const user = useRecoilValue(UserNameState)
   const FaSignIn: JSX.Element =
     <FaSignInAlt style={{ cursor: "pointer" }}
       onClick={handleClickToSignIn} />
-  const FaChart: JSX.Element = 
-    <FaRegChartBar style={{ cursor: "pointer" }} 
-      onClick={handleClickToShowChart}/>
+  const FaChart: JSX.Element =
+    <FaRegChartBar style={{ cursor: "pointer" }}
+      onClick={handleClickToShowChart} />
+  const FaUserIcon: JSX.Element =
+    <FaUser style={{ cursor: "pointer" }}
+      onClick={handleClickToMyPage} />
+
+
 
   return (
     <Content
       marginTop="0px"
       height={`calc(100% - 124px - 124px - ${isIosNotch() ? '96px' : '80px'})`}
       header={FaChart}
-      headerRight={FaSignIn}
+      headerRight={user === undefined ? FaSignIn : FaUserIcon}
     >
       <Atoms.Div
         display="flex"

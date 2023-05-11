@@ -2,14 +2,14 @@ import axios from "axios";
 import Atoms from "components/Atoms";
 import { Content, Form } from "components/Molecules";
 import { useNavigate } from "react-router";
+import { useSetRecoilState } from "recoil";
 import { useForm } from "src/hooks";
 import { validateLogin } from "src/utils";
-
-
+import { UserNameState } from "src/recoil";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-
+  const setUser = useSetRecoilState(UserNameState)
   const {
     values,
     errors,
@@ -30,8 +30,11 @@ const LoginForm = () => {
         data: body
       }).then((response) => {
         console.log(response);
-        window.alert(`Nice to meet you, ${response.data.name} 👋`);
-        navigate('/');
+        if (response.data.name) {
+          window.alert(`Nice to meet you, ${response.data.name} 👋`);
+          setUser(response.data.name);
+          navigate('/');
+        }
       }).catch((e) => {
         console.log(e);
         if (e.response.data.error) {
@@ -70,6 +73,7 @@ const LoginForm = () => {
           width="100%"
           borderRadius="8px"
           fontSize="18px"
+          disabled={submitting}
         >
           LOGIN
         </Atoms.Button>

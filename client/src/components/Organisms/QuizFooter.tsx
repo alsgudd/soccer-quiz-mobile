@@ -21,8 +21,8 @@ const QuizFooter = () => {
     SelectedAnswerState,
   );
   const isLastQuiz =
-    currentQuizIndex == (initialProps as TResponseData).results.length - 1;
-  const isSolved = selectedAnswer != undefined;
+    currentQuizIndex === (initialProps as TResponseData).results.length - 1;
+  const isSolved = selectedAnswer !== undefined;
 
   const handleClick = () => {
     if (isLastQuiz) {
