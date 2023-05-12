@@ -33,7 +33,7 @@ const validateSignUp = ({
   } else if (password.length < 8) {
     errors.password = "Please enter at least 8 characters for the password";
   } else if (password !== confirmPassword) {
-    errors.password = "Password does not match."
+    errors.password = "Password does not match"
   }
   return errors;
 }
