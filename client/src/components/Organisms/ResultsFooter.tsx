@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import {
@@ -10,10 +10,14 @@ import {
   SelectedAnswerState,
 } from 'src/recoil';
 import { FixedFooter } from 'components/Molecules';
+import { ResultsModal } from 'components/Organisms';
 import Atoms from 'components/Atoms';
 
 const ResultsFooter = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+
   const isLoggedIn = useRecoilValue(IsLoggedInState);
   const setCurrentQuizIndex = useSetRecoilState(CurrentQuizIndexState);
   const setSelectedAnswer = useSetRecoilState(SelectedAnswerState);
@@ -37,7 +41,8 @@ const ResultsFooter = () => {
     navigate('/quiz');
   };
   const handleClickToChart = () => {
-    if(isLoggedIn) {
+    // resetQuizIndexAndAnswer();
+    if (isLoggedIn) {
       navigate('/chart');
     } else {
       setIsModalOpen(true);
@@ -48,7 +53,7 @@ const ResultsFooter = () => {
   }
   const handleLoginModalConfirm = () => {
     setIsModalOpen(false);
-    navigate('/login');
+    navigate('/login', { state: pathname });
   }
 
   return (
@@ -70,10 +75,15 @@ const ResultsFooter = () => {
         width="calc(60% - 4px)"
         borderRadius="8px"
         fontSize="20px"
-        onClick={handleClickToRetry}
+        onClick={handleClickToChart}
       >
         REGISTER RECORDS
       </Atoms.Button>
+      <ResultsModal
+        isOpen={isModalOpen}
+        onClose={handleLoginModalClose}
+        onConfirm={handleLoginModalConfirm}
+      />
     </FixedFooter>
   );
 };

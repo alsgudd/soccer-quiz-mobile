@@ -27,12 +27,12 @@ const QuizResult = () => {
         justifyContent="center"
         height="100%"
       >
-        {selectedAnswer == undefined ? (
+        {selectedAnswer === undefined ? (
           <AnimationLoader
             name="box"
             path="https://assets6.lottiefiles.com/packages/lf20_q8buwK.json"
           />
-        ) : currentQuiz.correct_answer == selectedAnswer ? (
+        ) : currentQuiz.correct_answer === selectedAnswer ? (
           <AnimationLoader
             name="trophy"
             path="https://assets1.lottiefiles.com/packages/lf20_rmlyntkm.json"

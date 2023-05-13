@@ -1,16 +1,16 @@
 import {
-  TrophyNumbers,
-  Duration,
-  ScoreChart,
+  ResultsTrophyNumbers,
+  ResultsDuration,
+  ResultsScoreChart,
   ResultsFooter,
 } from 'components/Organisms';
 
 const ResultsPage = () => {
   return (
     <>
-      <TrophyNumbers />
-      <Duration />
-      <ScoreChart />
+      <ResultsTrophyNumbers />
+      <ResultsDuration />
+      <ResultsScoreChart />
       <ResultsFooter />
     </>
   );
