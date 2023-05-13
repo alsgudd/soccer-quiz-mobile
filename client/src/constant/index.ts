@@ -4,6 +4,8 @@ export const PLATFORM_ANDROID = 'android';
 export const RESULT_PAGENAME = 'result';
 export const QUIZ_PAGENAME = 'quiz';
 export const LANDING_PAGENAME = 'landing';
+export const MYPAGE_PAGENAME = 'mypage'
+
 
 export const MULTIPLE_TYPE = 'multiple';
 export const DEFAULT_NUMBERS = 2; 

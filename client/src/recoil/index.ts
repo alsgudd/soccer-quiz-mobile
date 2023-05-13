@@ -5,7 +5,7 @@ import QuizResultsState from './QuizResults';
 import QuizNumbersState from './QuizNumbers';
 import SelectedAnswerState from './SelectedAnswer';
 import QuizTeamState from './QuizTeam';
-import UserNameState from './UserName'
+import IsLoggedInState from './IsLoggedIn';
 
 
 export {
@@ -16,5 +16,5 @@ export {
   QuizNumbersState,
   SelectedAnswerState,
   QuizTeamState,
-  UserNameState
+  IsLoggedInState,
 };

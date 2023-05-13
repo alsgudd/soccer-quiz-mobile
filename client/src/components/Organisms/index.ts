@@ -1,4 +1,3 @@
-import Duration from './Duration';
 
 // Organisms of Landing Page
 import LandingFooter from './LandingFooter';
@@ -13,8 +12,12 @@ import QuizResult from './QuizResult';
 
 // Organism of ResultPage
 import ResultsFooter from './ResultsFooter';
-import ScoreChart from './ScoreChart';
-import TrophyNumbers from './TrophyNumbers';
+import ResultsScoreChart from './ResultsScoreChart';
+import ResultsTrophyNumbers from './ResultsTrophyNumbers';
+import ResultsDuration from './ResultsDuration';
+import ResultsLoginModal from './ResultsLoginModal';
+import ResultsChartModal from './ResultsChartModal';
+
 
 // Organism of AuthPage
 import LoginForm from './LoginForm';
@@ -24,7 +27,7 @@ import SignUpForm from './SignUpForm';
 
 
 export {
-  Duration,
+  ResultsDuration,
   LandingFooter,
   LandingQuizTeam,
   LandingQuizNumbers,  
@@ -33,10 +36,13 @@ export {
   QuizFooter,
   QuizResult,
   ResultsFooter,
-  ScoreChart,
-  TrophyNumbers,
+  ResultsScoreChart,
+  ResultsTrophyNumbers,  
+  ResultsLoginModal,
+  ResultsChartModal,
   LoginForm,
   LoginTitleAnimation,
   SignUpTitleAnimation,
-  SignUpForm
+  SignUpForm,
+
 };

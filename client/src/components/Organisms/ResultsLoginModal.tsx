@@ -8,7 +8,7 @@ interface ResultsModalProps {
 }
 
 
-const ResultsModal = ({ isOpen, onClose, onConfirm }: ResultsModalProps) => {
+const ResultsLoginModal = ({ isOpen, onClose, onConfirm }: ResultsModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Atoms.Div
@@ -51,4 +51,4 @@ const ResultsModal = ({ isOpen, onClose, onConfirm }: ResultsModalProps) => {
   )
 }
 
-export default ResultsModal;
+export default ResultsLoginModal;

@@ -1,12 +1,18 @@
+import { useEffect } from "react"
 import { isIosNotch } from 'src/utils';
 import { AnimationLoader, Content } from 'components/Molecules';
 import { FaSignInAlt, FaRegChartBar, FaUser } from 'react-icons/fa'
 import Atoms from 'components/Atoms';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { UserNameState } from 'src/recoil';
+import { useRefreshValidToken } from 'src/hooks';
+import { useRecoilValue } from "recoil";
+import { IsLoggedInState } from "src/recoil";
+
 
 const LandingTitleAnimation = () => {
+  const isLoggedIn = useRecoilValue(IsLoggedInState);
+  const { status } = useRefreshValidToken();
+
   const navigate = useNavigate();
   const handleClickToSignIn = () => {
     navigate('/login');
@@ -18,7 +24,6 @@ const LandingTitleAnimation = () => {
     navigate('/mypage');
   }
 
-  const user = useRecoilValue(UserNameState)
   const FaSignIn: JSX.Element =
     <FaSignInAlt style={{ cursor: "pointer" }}
       onClick={handleClickToSignIn} />
@@ -29,14 +34,19 @@ const LandingTitleAnimation = () => {
     <FaUser style={{ cursor: "pointer" }}
       onClick={handleClickToMyPage} />
 
-
+  useEffect(() => {
+    if(status === 403) {
+      window.alert('Your session has expired. Go to the login page.');
+      navigate('/login')
+    }
+  }, [isLoggedIn, status])
 
   return (
     <Content
       marginTop="0px"
       height={`calc(100% - 124px - 124px - ${isIosNotch() ? '96px' : '80px'})`}
       header={FaChart}
-      headerRight={user === undefined ? FaSignIn : FaUserIcon}
+      headerRight={isLoggedIn ? FaUserIcon : FaSignIn}
     >
       <Atoms.Div
         display="flex"

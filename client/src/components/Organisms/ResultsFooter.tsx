@@ -10,7 +10,7 @@ import {
   SelectedAnswerState,
 } from 'src/recoil';
 import { FixedFooter } from 'components/Molecules';
-import { ResultsModal } from 'components/Organisms';
+import { ResultsLoginModal, ResultsChartModal } from 'components/Organisms';
 import Atoms from 'components/Atoms';
 
 const ResultsFooter = () => {
@@ -23,7 +23,8 @@ const ResultsFooter = () => {
   const setSelectedAnswer = useSetRecoilState(SelectedAnswerState);
   const setQuizResults = useSetRecoilState(QuizResultsState);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isChartModalOpen, setIsChartModalOpen] = useState(false);
 
   const resetQuizIndexAndAnswer = () => {
     setCurrentQuizIndex(0);
@@ -36,24 +37,29 @@ const ResultsFooter = () => {
     navigate('/');
   };
 
-  const handleClickToRetry = () => {
-    resetQuizIndexAndAnswer();
-    navigate('/quiz');
-  };
   const handleClickToChart = () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
-      navigate('/chart');
+      // DB에 기록 저장하는 코드
+      setIsChartModalOpen(true);
     } else {
-      setIsModalOpen(true);
+      setIsLoginModalOpen(true);
     }
   }
   const handleLoginModalClose = () => {
-    setIsModalOpen(false);
+    setIsLoginModalOpen(false);
   }
   const handleLoginModalConfirm = () => {
-    setIsModalOpen(false);
+    setIsLoginModalOpen(false);
     navigate('/login', { state: pathname });
+  }
+
+  const handleChartModalClose = () => {
+    setIsChartModalOpen(false);
+  }
+  const handleChartModalConfirm = () => {
+    setIsChartModalOpen(false);
+    navigate('/chart');
   }
 
   return (
@@ -79,10 +85,15 @@ const ResultsFooter = () => {
       >
         REGISTER RECORDS
       </Atoms.Button>
-      <ResultsModal
-        isOpen={isModalOpen}
+      <ResultsLoginModal
+        isOpen={isLoginModalOpen}
         onClose={handleLoginModalClose}
         onConfirm={handleLoginModalConfirm}
+      />
+      <ResultsChartModal 
+        isOpen={isChartModalOpen}
+        onClose={handleChartModalClose}
+        onConfirm={handleChartModalConfirm}
       />
     </FixedFooter>
   );
