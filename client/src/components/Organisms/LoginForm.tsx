@@ -1,15 +1,23 @@
 import axios from "axios";
 import Atoms from "components/Atoms";
 import { Content, Form } from "components/Molecules";
-import { useNavigate } from "react-router";
-import { useSetRecoilState } from "recoil";
+import { useLocation, useNavigate } from "react-router";
 import { useForm } from "src/hooks";
 import { validateLogin } from "src/utils";
-import { UserNameState } from "src/recoil";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const setUser = useSetRecoilState(UserNameState)
+  const { state } = useLocation();
+
+
+  const directPage = (name: string) => {
+    if(state) {
+      navigate(state);
+    } else {
+      window.alert(`Nice to meet you, ${name} 👋`);
+      navigate('/')
+    }
+  }
   const {
     values,
     errors,
@@ -31,9 +39,7 @@ const LoginForm = () => {
       }).then((response) => {
         console.log(response);
         if (response.data.name) {
-          window.alert(`Nice to meet you, ${response.data.name} 👋`);
-          setUser(response.data.name);
-          navigate('/');
+          directPage(response.data.name);
         }
       }).catch((e) => {
         console.log(e);
@@ -44,7 +50,6 @@ const LoginForm = () => {
     },
     validate: validateLogin,
   });
-
   return (
     <Content>
       <Form height="300px" onSubmit={handleSubmit}>
