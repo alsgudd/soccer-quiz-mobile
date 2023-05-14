@@ -33,9 +33,9 @@ const createHashedPassword = async (password) => {
 
 const signUp = async (req, res) => {
   try {
-    // console.log(found);
     if (await isemailExist(req.body.email)) {
-      throw new Error('The email already exist! Please use another email.');
+      // if email already Exist
+      throw 401;
     }
     let temp = await createHashedPassword(req.body.password);
     let secretPW = temp.hashedPassword;
@@ -47,13 +47,19 @@ const signUp = async (req, res) => {
       password: secretPW,
       salt: salt
     }
-    await collection.insertOne(insertData);
+    const result = await collection.insertOne(insertData);
+    const insertedId = result.insertedId.toString();
+    const newCollection = await db.createCollection(insertedId);
+    console.log(`Collection Inserted! Collection Name: ${newCollection.collectionName}`);
     res.status(200).json("signUp Success!")
-    console.log(`${req.body} is inserted!`);
-  } catch (e) {
+  } catch (e) {    
     console.log(e);
+    if (e === 401) {
+      res.status(400).json({ error: "The email already exist! Please use another email." })
+    } else {
+      res.status(500).json({ error: "An unknown error has occurred. Please try again" })
+    }
     // res.status(400).json(e)
-    res.status(400).json({ error: 'The email already exist! Please use another email.'})
 
   }
 }
