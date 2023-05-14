@@ -3,7 +3,7 @@ import isIosNotch from "./isIosNotch";
 import decodeHtml from "./decodeHtml";
 import validateLogin from "./validateLogin";
 import validateSignUp from "./validateSignUp";
-
+import saveInCollction from "./saveInCollection";
 
 
 export {
@@ -11,5 +11,6 @@ export {
   isIosNotch,
   decodeHtml,
   validateLogin,
-  validateSignUp
+  validateSignUp,
+  saveInCollction
 }

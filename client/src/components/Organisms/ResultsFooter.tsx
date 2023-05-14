@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 
 import {
   CurrentQuizIndexState,
@@ -13,6 +13,8 @@ import { FixedFooter } from 'components/Molecules';
 import { ResultsLoginModal, ResultsChartModal } from 'components/Organisms';
 import Atoms from 'components/Atoms';
 
+import { saveInCollction } from "src/utils";
+
 const ResultsFooter = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -21,7 +23,14 @@ const ResultsFooter = () => {
   const isLoggedIn = useRecoilValue(IsLoggedInState);
   const setCurrentQuizIndex = useSetRecoilState(CurrentQuizIndexState);
   const setSelectedAnswer = useSetRecoilState(SelectedAnswerState);
-  const setQuizResults = useSetRecoilState(QuizResultsState);
+  const [quizResults, setQuizResults] = useRecoilState(QuizResultsState);
+
+  const duration = Math.floor(quizResults
+    .map((quiz) => quiz.duration)
+    .reduce((acc, cur) => acc + cur, 0) / 100,
+  ) / 10
+  const correctQuizNumbers = quizResults.filter((quiz) => quiz.correct).length;
+
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
@@ -37,11 +46,15 @@ const ResultsFooter = () => {
     navigate('/');
   };
 
-  const handleClickToChart = () => {
+  const handleClickToChart = async () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
-      // DB에 기록 저장하는 코드
-      
+      // Save Record in DB.
+      const status = await saveInCollction(correctQuizNumbers, duration)
+      if(status === 404) {
+        window.alert('An unknown error has occurred. Please try again');
+        return;
+      }
       setIsChartModalOpen(true);
     } else {
       setIsLoginModalOpen(true);
@@ -91,7 +104,7 @@ const ResultsFooter = () => {
         onClose={handleLoginModalClose}
         onConfirm={handleLoginModalConfirm}
       />
-      <ResultsChartModal 
+      <ResultsChartModal
         isOpen={isChartModalOpen}
         onClose={handleChartModalClose}
         onConfirm={handleChartModalConfirm}
