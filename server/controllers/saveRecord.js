@@ -11,6 +11,7 @@ const saveRecord = async (req, res) => {
     if (!token) throw 404;
     const tokenInfo = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     const userId = tokenInfo.userId;
+    const username = tokenInfo.username;
 
     const client = new MongoClient(MONGO_URI);
     const db = client.db(DB_NAME);
@@ -24,18 +25,16 @@ const saveRecord = async (req, res) => {
     }
     const insertDataInChart = {
       ...insertData,
-      username: req.body.username
+      username: username
     }
     const result = await collection.insertOne(insertData);
     const resultChart = await db.collection('chart').insertOne(insertDataInChart);
     console.log(`Record was inserted in UserCollection with the _id: ${result.insertedId}`);
     console.log(`Record was inserted in ChartCollection with the _id: ${resultChart.insertedId}`);
- 
-    collection.insertOne()
+    res.status(200);
   } catch (error) {
-
+    res.status(error);
   }
-
 }
 
 export default saveRecord;
