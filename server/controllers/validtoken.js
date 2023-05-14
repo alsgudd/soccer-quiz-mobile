@@ -7,7 +7,7 @@ const validtoken = async (req, res) => {
     if (!token) throw 404;
     const data = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     if (!data) throw new Error('JWT Token is Expired');
-    res.status(200).json({ token: token });
+    res.status(200).json({ message: "token is still valid." });
   } catch (error) {
     if (error === 404) {
       res.status(404).json(error);

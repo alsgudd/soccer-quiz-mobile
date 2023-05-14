@@ -36,39 +36,41 @@ const signIn = async (req, res) => {
     if (!await isemailExist(req.body.email)) throw 402;
     const userInfo = await foundUserInfo(req.body.email);
     const isCorrectPW = await verifyPassword(req.body.password, userInfo.salt, userInfo.password);
-    // 유저의 비밀번호가 맞지 않는 경우
+    // email that user entered is not exist
     if (!isCorrectPW) throw 403;
     try {
       // access Token 발급
       const accessToken = jwt.sign({
+        userId: userInfo._id,
         email: userInfo.email,
         name: userInfo.name
       }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '60m',
+        expiresIn: '24h',
         issuer: 'Lee'
       })
-      // token을 쿠키에 담아서 전송
+      // Send Token in Cookie
       res.cookie('accessToken', accessToken, {
         secure: false,
-        // JS에서 쿠키 접근이 불가능하게 하기 위함.
+        // Cannot Access In JS(Client)
         httpOnly: true
       })
       res.status(200).json({
+        userId: userInfo._id,
         name: userInfo.name,
         message: 'login Success!',
-        accessToken: accessToken
       });
     } catch (error) {
       res.status(500).json(error);
     }
   } catch (errorcode) {
     if (errorcode === 402) {
-      // 유저가 입력한 이메일이 없는 경우
+      // case: email that user entered is not exist
       res.status(errorcode).json({ error: 'The email does not exist.' });
     } else if (errorcode === 403) {
-      // 유저가 입력한 비밀번호가 일치하지 않는 경우
+      // case: password that user entered is not match
       res.status(errorcode).json({ error: 'Password does not match' })
     } else {
+      // db error
       res.status(500).json({ error: 'An unknown error has occurred. Please try again' })
     }
 
