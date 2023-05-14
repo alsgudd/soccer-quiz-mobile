@@ -36,7 +36,7 @@ const SignUpForm = () => {
         navigate('/login');
       }).catch((e) => {
         console.log(e);
-        if(e.response.data.error) {
+        if (e.response.data.error) {
           window.alert(e.response.data.error);
         }
       })
@@ -86,6 +86,7 @@ const SignUpForm = () => {
           width="100%"
           borderRadius="8px"
           fontSize="18px"
+          disabled={submitting}
         >
           SIGN UP
         </Atoms.Button>

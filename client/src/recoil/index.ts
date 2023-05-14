@@ -7,7 +7,6 @@ import SelectedAnswerState from './SelectedAnswer';
 import QuizTeamState from './QuizTeam';
 import IsLoggedInState from './IsLoggedIn';
 
-
 export {
   CurrentQuizIndexState,
   InitialPropsState,

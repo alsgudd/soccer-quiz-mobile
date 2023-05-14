@@ -2,7 +2,7 @@ import axios from "axios";
 import Atoms from "components/Atoms";
 import { Content, Form } from "components/Molecules";
 import { useLocation, useNavigate } from "react-router";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { useForm } from "src/hooks";
 import { IsLoggedInState } from "src/recoil";
 import { validateLogin } from "src/utils";
@@ -10,8 +10,7 @@ import { validateLogin } from "src/utils";
 const LoginForm = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(IsLoggedInState);
-
+  const setIsLoggedIn = useSetRecoilState(IsLoggedInState);
   const directPage = (name: string) => {
     if(state) {
       navigate(state);

@@ -41,6 +41,7 @@ const ResultsFooter = () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
       // DB에 기록 저장하는 코드
+      
       setIsChartModalOpen(true);
     } else {
       setIsLoginModalOpen(true);
