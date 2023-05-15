@@ -6,7 +6,7 @@ import { QuizResultsState } from 'src/recoil';
 import { Content } from 'components/Molecules';
 import Atoms from 'components/Atoms';
 
-const ScoreChart = () => {
+const ResultsScoreChart = () => {
   const quizResults = useRecoilValue(QuizResultsState);
   const correctQuizNumbers = quizResults.filter((quiz) => quiz.correct).length;
 
@@ -80,4 +80,4 @@ const ScoreChart = () => {
   );
 };
 
-export default ScoreChart;
+export default ResultsScoreChart;

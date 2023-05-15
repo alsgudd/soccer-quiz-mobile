@@ -12,7 +12,8 @@ import {
   LoginPage,
   SignUpPage,
   Page404,
-  LoadingPage
+  LoadingPage,
+  ChartPage
 } from 'src/components/Pages';
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
           <Route path={`/${RESULT_PAGENAME}`} element={<ResultsPage />} />
           <Route path="/login" element={ <LoginPage /> } />
           <Route path="/signup" element={ <SignUpPage /> } />
+          <Route path="/chart" element={ <ChartPage /> } />
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={<Page404 />} />
         </Routes>

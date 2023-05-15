@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { QuizResultsState } from 'src/recoil';
 import { Content } from "components/Molecules";
 
-const Duration = () => {
+const ResultsDuration = () => {
   const quizResults = useRecoilValue(QuizResultsState);
 
   return (
@@ -20,4 +20,4 @@ const Duration = () => {
   )
 }
 
-export default Duration;
+export default ResultsDuration;

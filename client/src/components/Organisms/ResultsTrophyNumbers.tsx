@@ -5,7 +5,7 @@ import { QuizResultsState } from 'src/recoil';
 import { AnimationLoader, Content } from 'components/Molecules';
 import Atoms from 'components/Atoms';
 
-const TrophyNumbers = () => {
+const ResultsTrophyNumbers = () => {
   const quizResults = useRecoilValue(QuizResultsState);
   const correctQuizNumbers = quizResults.filter((quiz) => quiz.correct).length;
 
@@ -42,4 +42,4 @@ const TrophyNumbers = () => {
   );
 };
 
-export default TrophyNumbers;
+export default ResultsTrophyNumbers;
