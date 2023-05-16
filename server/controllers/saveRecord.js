@@ -7,11 +7,12 @@ const DB_NAME = process.env.DATABASE_NAME;
 
 const saveRecord = async (req, res) => {
   try {
-    const token = req.cookie.accessToken;
+    const token = req.cookies.accessToken;
     if (!token) throw 404;
     const tokenInfo = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    console.log(tokenInfo);
     const userId = tokenInfo.userId;
-    const username = tokenInfo.username;
+    const username = tokenInfo.name;
 
     const client = new MongoClient(MONGO_URI);
     const db = client.db(DB_NAME);
@@ -33,6 +34,7 @@ const saveRecord = async (req, res) => {
     console.log(`Record was inserted in ChartCollection with the _id: ${resultChart.insertedId}`);
     res.status(200);
   } catch (error) {
+    console.log(error);
     res.status(error);
   }
 }

@@ -14,6 +14,8 @@ import { ResultsLoginModal, ResultsChartModal } from 'components/Organisms';
 import Atoms from 'components/Atoms';
 
 import { saveInCollction } from "src/utils";
+import { useSaveRecord } from "src/hooks";
+
 
 const ResultsFooter = () => {
   const navigate = useNavigate();
@@ -49,12 +51,11 @@ const ResultsFooter = () => {
   const handleClickToChart = async () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
+      console.log(1);
       // Save Record in DB.
-      const status = await saveInCollction(correctQuizNumbers, duration)
-      if(status === 404) {
-        window.alert('An unknown error has occurred. Please try again');
-        return;
-      }
+
+      saveInCollction(correctQuizNumbers, duration)
+      console.log(2);
       setIsChartModalOpen(true);
     } else {
       setIsLoginModalOpen(true);

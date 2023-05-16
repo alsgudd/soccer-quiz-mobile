@@ -2,6 +2,7 @@ import { Content } from "components/Molecules";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import Atoms from "components/Atoms";
+import styled from "styled-components";
 
 const ChartTable = () => {
   const navigate = useNavigate();
@@ -18,24 +19,51 @@ const ChartTable = () => {
       header={FaHomeIcon}
       overflow="hidden"
     >
-      <Atoms.Div>
-        <Atoms.Title margin="16px 0px 0px 0px">
-          THE HALL OF FAME🏆
-        </Atoms.Title>
-        <table>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-          </tr>
-
-        </table>
+      <Atoms.Title margin="16px 0px 0px 0px">
+        THE HALL OF FAME🏆
+      </Atoms.Title>
+      <Atoms.Div
+        width="100%"
+        marginTop="40px"
+      >
+        <StyledTable>
+          <thead>
+            <tr>
+              <StyledTh>RANKING</StyledTh>
+              <StyledTh>USERNAME</StyledTh>
+              <StyledTh>TEAM</StyledTh>
+              <StyledTh>SCORE</StyledTh>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <StyledTd>1</StyledTd>
+              <StyledTd>USERNAME</StyledTd>
+              <StyledTd>ManchesterUnited</StyledTd>
+              <StyledTd>SCORE</StyledTd>
+            </tr>
+          </tbody>
+        </StyledTable>
       </Atoms.Div>
-
     </Content>
 
   )
 }
 
+const StyledTable = styled.table`
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  border-radius: 10px;
+`
+const StyledTd = styled.td`
+  padding: 10px;
+  text-align: center;
+`
+const StyledTh = styled.th`
+  padding: 10px;
+  font-weight: bold;
+`
 
 export default ChartTable;
 
