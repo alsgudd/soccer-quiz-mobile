@@ -26,6 +26,9 @@ import SignUpTitleAnimation from './SignUpTitleAnimation';
 import SignUpForm from './SignUpForm';
 
 
+// Organism of ChartPage
+import ChartTable from './ChartTable';
+
 export {
   ResultsDuration,
   LandingFooter,
@@ -44,5 +47,5 @@ export {
   LoginTitleAnimation,
   SignUpTitleAnimation,
   SignUpForm,
-
+  ChartTable
 };
