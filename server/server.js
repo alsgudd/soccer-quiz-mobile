@@ -4,8 +4,11 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+
 import authRouter from './routers/auth.js'
 import quizRouter from './routers/quiz.js'
+import chartRouter from './routers/chart.js'
+
 import cors from 'cors'
 import { fileURLToPath } from "url";   // 👈 추가
 
@@ -14,7 +17,6 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
-
 
 
 app.use(express.json());
@@ -31,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', authRouter);
 app.use('/quiz', quizRouter)
-
+app.use('/chart', chartRouter);
 
 app.listen(8080, function () {
   console.log(`listening on ${PORT}`);

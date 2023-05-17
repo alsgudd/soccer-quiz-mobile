@@ -7,5 +7,4 @@ const Router = express.Router();
 Router.get('/get', getquiz);
 Router.post('/save', saveRecord);
 
-
 export default Router;
