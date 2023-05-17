@@ -1,11 +1,16 @@
 import { Content } from "components/Molecules";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router";
+
 import Atoms from "components/Atoms";
 import styled from "styled-components";
 
+import { useChart } from "src/hooks";
+import { getOrdinalSuffix } from "src/utils";
+
 const ChartTable = () => {
   const navigate = useNavigate();
+  const { chart } = useChart();
 
   const FaHomeIcon: JSX.Element =
     <FaHome style={{ cursor: "pointer" }}
@@ -37,6 +42,14 @@ const ChartTable = () => {
           </thead>
           <tbody>
             <tr>
+              {chart.map((chart, index) => {
+                const rank = getOrdinalSuffix(index + 1);
+                return (
+                  <StyledTd>
+                    {rank}
+                  </StyledTd>
+                )
+              })}
               <StyledTd>1</StyledTd>
               <StyledTd>USERNAME</StyledTd>
               <StyledTd>ManchesterUnited</StyledTd>

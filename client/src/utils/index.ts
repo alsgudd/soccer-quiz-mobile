@@ -4,7 +4,7 @@ import decodeHtml from "./decodeHtml";
 import validateLogin from "./validateLogin";
 import validateSignUp from "./validateSignUp";
 import saveInCollction from "./saveInCollection";
-
+import getOrdinalSuffix from "./getOrdinalSuffix";
 
 export {
   getQueryData,
@@ -12,5 +12,6 @@ export {
   decodeHtml,
   validateLogin,
   validateSignUp,
-  saveInCollction
+  saveInCollction,
+  getOrdinalSuffix
 }

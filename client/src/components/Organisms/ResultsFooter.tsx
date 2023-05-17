@@ -8,13 +8,13 @@ import {
   IsLoggedInState,
   QuizResultsState,
   SelectedAnswerState,
+  QuizTeamState
 } from 'src/recoil';
 import { FixedFooter } from 'components/Molecules';
 import { ResultsLoginModal, ResultsChartModal } from 'components/Organisms';
 import Atoms from 'components/Atoms';
 
 import { saveInCollction } from "src/utils";
-import { useSaveRecord } from "src/hooks";
 
 
 const ResultsFooter = () => {
@@ -23,6 +23,7 @@ const ResultsFooter = () => {
 
 
   const isLoggedIn = useRecoilValue(IsLoggedInState);
+  const quizTeam = useRecoilValue(QuizTeamState);
   const setCurrentQuizIndex = useSetRecoilState(CurrentQuizIndexState);
   const setSelectedAnswer = useSetRecoilState(SelectedAnswerState);
   const [quizResults, setQuizResults] = useRecoilState(QuizResultsState);
@@ -51,11 +52,8 @@ const ResultsFooter = () => {
   const handleClickToChart = async () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
-      console.log(1);
       // Save Record in DB.
-
-      saveInCollction(correctQuizNumbers, duration)
-      console.log(2);
+      saveInCollction(correctQuizNumbers, duration, quizTeam)
       setIsChartModalOpen(true);
     } else {
       setIsLoginModalOpen(true);

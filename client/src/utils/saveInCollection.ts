@@ -4,11 +4,13 @@ import axios from "axios";
 
 const saveInCollction = (
   correctQuizNumbers: number,
-  duration: number
-) => {
+  duration: number,
+  quizTeam: string | undefined,
+): any => {
   const body = {
     correctQuizNumbers: correctQuizNumbers,
-    duration: duration
+    duration: duration,
+    quizTeam: quizTeam 
   }
 
   
