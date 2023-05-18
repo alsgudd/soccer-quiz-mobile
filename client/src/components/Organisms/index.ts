@@ -29,6 +29,11 @@ import SignUpForm from './SignUpForm';
 // Organism of ChartPage
 import ChartTable from './ChartTable';
 
+// Organism of MyPage
+import MypageUpdate from './MypageUpdate';
+import MypageRecord from './MypageRecord';
+import MypageTitleAnimation from './MypageTitleAnimation';
+
 export {
   ResultsDuration,
   LandingFooter,
@@ -47,5 +52,8 @@ export {
   LoginTitleAnimation,
   SignUpTitleAnimation,
   SignUpForm,
-  ChartTable
+  ChartTable,
+  MypageUpdate,
+  MypageRecord,
+  MypageTitleAnimation
 };

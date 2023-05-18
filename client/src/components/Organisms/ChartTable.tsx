@@ -48,7 +48,6 @@ const ChartTable = () => {
           </thead>
           <tbody>
             {chart.map((a, index) => {
-              console.log(a);
               const rank = getOrdinalSuffix(index + 1);
               return (
                 <tr>

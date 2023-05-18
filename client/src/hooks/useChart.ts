@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 interface Tchart {
   _id: string;
-  correctQuizNumbers: number;
-  duration: number;
+  correctQuizNumbers?: number;
+  duration?: number;
   score: number;
   quizTeam: string;
   username: string;
@@ -16,7 +16,8 @@ const useChart = () => {
   useEffect(() => {
     axios({
       url: `${process.env.REACT_APP_SERVER_URL}/chart/get`,
-      method: "GET"
+      method: "GET",
+      withCredentials: true,
     }).then((response) => {
       console.log(response);
       setChart(response.data.charts);
