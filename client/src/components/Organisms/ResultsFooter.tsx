@@ -21,9 +21,8 @@ const ResultsFooter = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-
   const isLoggedIn = useRecoilValue(IsLoggedInState);
-  const quizTeam = useRecoilValue(QuizTeamState);
+  const [quizTeam, setQuizTeam] = useRecoilState(QuizTeamState);
   const setCurrentQuizIndex = useSetRecoilState(CurrentQuizIndexState);
   const setSelectedAnswer = useSetRecoilState(SelectedAnswerState);
   const [quizResults, setQuizResults] = useRecoilState(QuizResultsState);
@@ -42,9 +41,10 @@ const ResultsFooter = () => {
     setCurrentQuizIndex(0);
     setSelectedAnswer(undefined);
     setQuizResults([]);
+    setQuizTeam(undefined);
   };
 
-  const handleClick = () => {
+  const handleClickToStart = () => {
     resetQuizIndexAndAnswer();
     navigate('/');
   };
@@ -53,6 +53,7 @@ const ResultsFooter = () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
       // Save Record in DB.
+      console.log(quizTeam);
       saveInCollction(correctQuizNumbers, duration, quizTeam)
       setIsChartModalOpen(true);
     } else {
@@ -83,7 +84,7 @@ const ResultsFooter = () => {
         width="calc(40% - 4px)"
         borderRadius="8px"
         fontSize="20px"
-        onClick={handleClick}
+        onClick={handleClickToStart}
       >
         START PAGE
       </Atoms.Button>

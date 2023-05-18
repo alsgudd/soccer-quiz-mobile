@@ -1,25 +1,35 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+interface Tchart {
+  _id: string;
+  correctQuizNumbers: number;
+  duration: number;
+  score: number;
+  quizTeam: string;
+  username: string;
+}
 
 const useChart = () => {
-  const [chart, setChart] = useState([]);
+  const [chart, setChart] = useState<Tchart[]>([]);
   const [status, setStatus] = useState<number>(0);
-
-  axios({
-    url: `${process.env.REACT_APP_SERVER_URL}/chart/get`,
-    method: "GET"
-  })
-    .then((response) => {
-      setChart(response.data);
+  useEffect(() => {
+    axios({
+      url: `${process.env.REACT_APP_SERVER_URL}/chart/get`,
+      method: "GET"
+    }).then((response) => {
+      console.log(response);
+      setChart(response.data.charts);
       setStatus(200);
-    })
-    .catch((e) => {
-      console.log(e);
+    }).catch((e) => {
       setStatus(404);
     })
+  }, [])
 
-    return { chart, status };
+  return {
+    chart,
+    status
+  };
 }
 
 export default useChart;

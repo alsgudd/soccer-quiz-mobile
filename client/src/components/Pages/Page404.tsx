@@ -8,6 +8,7 @@ const Page404 = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/');
+    window.location.reload();
   }
   return (
     <Atoms.Div

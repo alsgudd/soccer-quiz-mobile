@@ -7,15 +7,21 @@ import styled from "styled-components";
 
 import { useChart } from "src/hooks";
 import { getOrdinalSuffix } from "src/utils";
+import { useEffect } from "react";
 
 const ChartTable = () => {
   const navigate = useNavigate();
-  const { chart } = useChart();
+  const { chart, status } = useChart();
 
   const FaHomeIcon: JSX.Element =
     <FaHome style={{ cursor: "pointer" }}
       onClick={() => navigate("/")} />;
 
+  useEffect(() => {
+    if(status === 404) {
+      
+    }
+  }, [chart, status])
 
   return (
     <Content
@@ -41,20 +47,18 @@ const ChartTable = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              {chart.map((chart, index) => {
-                const rank = getOrdinalSuffix(index + 1);
-                return (
-                  <StyledTd>
-                    {rank}
-                  </StyledTd>
-                )
-              })}
-              <StyledTd>1</StyledTd>
-              <StyledTd>USERNAME</StyledTd>
-              <StyledTd>ManchesterUnited</StyledTd>
-              <StyledTd>SCORE</StyledTd>
-            </tr>
+            {chart.map((a, index) => {
+              console.log(a);
+              const rank = getOrdinalSuffix(index + 1);
+              return (
+                <tr>
+                  <StyledTd>{rank}</StyledTd>
+                  <StyledTd>{a.username}</StyledTd>
+                  <StyledTd>{a.quizTeam}</StyledTd>
+                  <StyledTd>{a.score}</StyledTd>
+                </tr>
+              )
+            })}
           </tbody>
         </StyledTable>
       </Atoms.Div>

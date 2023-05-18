@@ -14,6 +14,7 @@ const LandingQuizTeam = () => {
   const [quizTeam, setQuizTeam] = useRecoilState(QuizTeamState)
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     // setQuizDifficulty(e.target.value);
+    console.log(e.target.value);
     setQuizTeam(e.target.value);
   };
 
