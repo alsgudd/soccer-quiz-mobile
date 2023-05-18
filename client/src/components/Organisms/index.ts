@@ -33,6 +33,8 @@ import ChartTable from './ChartTable';
 import MypageUpdate from './MypageUpdate';
 import MypageRecord from './MypageRecord';
 import MypageTitleAnimation from './MypageTitleAnimation';
+import MypageUpdateModal from './MypageUpdateModal';
+
 
 export {
   ResultsDuration,
@@ -55,5 +57,6 @@ export {
   ChartTable,
   MypageUpdate,
   MypageRecord,
-  MypageTitleAnimation
+  MypageTitleAnimation,
+  MypageUpdateModal
 };

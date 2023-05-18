@@ -1,9 +1,20 @@
 import { Content } from "components/Molecules"
 import Atoms from "components/Atoms"
+import { useState } from "react";
+import { MypageUpdateModal } from "components/Organisms";
+
 
 const MypageUpdate = () => {
-  const handleClickToUpdate = () => {
 
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const handleClickToUpdate = () => {
+    setIsUpdateModalOpen(true);
+  }
+  const handleUpdateModalClose = () => {
+    setIsUpdateModalOpen(false);
+  }
+  const handleUpdateModalConfirm = () => {
+    setIsUpdateModalOpen(false)
   }
 
   return (
@@ -22,6 +33,11 @@ const MypageUpdate = () => {
       >
         MODIFY PASSWORD
       </Atoms.Button>
+      <MypageUpdateModal 
+        isOpen={isUpdateModalOpen}
+        onClose={handleUpdateModalClose}
+        onConfirm={handleUpdateModalConfirm}
+      />
     </Content>
   )
 }

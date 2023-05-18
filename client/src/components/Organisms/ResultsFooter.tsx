@@ -53,7 +53,7 @@ const ResultsFooter = () => {
     // resetQuizIndexAndAnswer();
     if (isLoggedIn) {
       // Save Record in DB.
-      console.log(quizTeam);
+      // console.log(quizTeam);
       saveInCollction(correctQuizNumbers, duration, quizTeam)
       setIsChartModalOpen(true);
     } else {

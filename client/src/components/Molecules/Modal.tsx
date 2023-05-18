@@ -6,12 +6,16 @@ interface ModalProps {
   isOpen: boolean;
   onClose?: () => void;
   children?: ReactNode;
+  height?: string;
 }
 
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, children, height }: ModalProps) => {
   return (
     <ModalOverlay isOpen={isOpen}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
+      <ModalContent 
+        onClick={(e) => e.stopPropagation()}
+        height={height}
+      >
         { children }
       </ModalContent>
     </ModalOverlay>
@@ -28,12 +32,12 @@ const ModalOverlay = styled.div<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `
 
-const ModalContent = styled.div`
+const ModalContent = styled.div<{ height: string | undefined }>`
   position: absolute;
   top: 50%;
   left: 50%;
   width: 350px;
-  height: 300px;
+  height: ${({ height }) => height || "300px"};
   transform: translate(-50%, -50%);
   background-color: white;
   // padding: 30px;

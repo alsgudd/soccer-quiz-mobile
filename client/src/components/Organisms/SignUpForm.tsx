@@ -21,21 +21,22 @@ const SignUpForm = () => {
       confirmPassword: ""
     },
     onSubmit: (values) => {
+      const serverURL = process.env.REACT_APP_SERVER_URL
       const body = {
         name: values.name,
         email: values.email,
         password: values.password
       }
       axios({
-        url: `${process.env.REACT_APP_SERVER_URL}/auth/signup`,
+        url: `${serverURL}/auth/signup`,
         method: "POST",
         data: body
       }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.alert('SignUp Success! Please Login😊');
         navigate('/login');
       }).catch((e) => {
-        console.log(e);
+        // console.log(e);
         if (e.response.data.error) {
           window.alert(e.response.data.error);
         }
