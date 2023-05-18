@@ -7,7 +7,7 @@ import SignUpPage from './SignUpPage';
 import Page404 from './Page404';
 import LoadingPage from './LoadingPage';
 import ChartPage from './Chart';
-
+import Mypage from './Mypage';
 
 export { 
   ErrorBoundary, 
@@ -18,5 +18,6 @@ export {
   SignUpPage,
   Page404,
   LoadingPage,
-  ChartPage
+  ChartPage,
+  Mypage
 };
