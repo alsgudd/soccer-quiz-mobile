@@ -43,7 +43,6 @@ export default selector<TResponseData>({
     const decodedResponseData = {
       ...response.data,
       results: response.data.results.map((quiz: TQuiz) => {
-        // console.log(quiz);
         const decoded_correct_answer = decodeHtml(quiz.correct_answer);
         const decoded_incorrect_answers = quiz.incorrect_answer.map((answer) =>
           decodeHtml(answer),
@@ -68,6 +67,5 @@ export default selector<TResponseData>({
 
     set(QueryDataState, { amount, team });
     set(QuizNumbersState, DEFAULT_NUMBERS);
-    set(QuizTeamState, undefined);
   },
 });

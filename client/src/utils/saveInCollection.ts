@@ -9,15 +9,11 @@ const saveInCollction = (
   quizTeam: string | undefined,
 ): any => {
   const score = calculateScore(correctQuizNumbers, duration);
-
   const body = {
-    correctQuizNumbers: correctQuizNumbers,
-    duration: duration,
     quizTeam: quizTeam,
     score: score
   }
 
-  
   axios({
     url: `${process.env.REACT_APP_SERVER_URL}/quiz/save`,
     method: "POST",
