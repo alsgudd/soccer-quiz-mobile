@@ -6,7 +6,7 @@ const client = new MongoClient(MONGO_URI);
 const connectdb = async () => {
     try {
         const database = client.db('soccer-quiz-mobile');
-        console.log('MonogoDB connected!');
+        console.log('MonogoDB connected! (require refactor)');
     } finally {
         await client.close();
     }
