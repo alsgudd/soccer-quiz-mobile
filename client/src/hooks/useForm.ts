@@ -4,6 +4,8 @@ interface FormProps {
   name?: string;
   email?: string;
   password?: string;
+  currentPassword?: string;
+  passwordToChange?: string;
   confirmPassword?: string;
 }
 interface ErrorType {
