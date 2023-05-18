@@ -23,7 +23,7 @@ const createSalt = async () => {
   return buf.toString('base64');
 }
 
-const createHashedPassword = async (password) => {
+export const createHashedPassword = async (password) => {
   const salt = await createSalt();
   const key = await pbkdf2Promise(password, salt, 104999, 64, 'sha512');
   const hashedPassword = key.toString('base64');

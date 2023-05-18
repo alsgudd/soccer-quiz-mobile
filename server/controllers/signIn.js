@@ -16,7 +16,7 @@ const randomBytesPromise = util.promisify(crypto.randomBytes);
 const pbkdf2Promise = util.promisify(crypto.pbkdf2);
 
 // login Part!
-const verifyPassword = async (password, userSalt, userPassword) => {
+export const verifyPassword = async (password, userSalt, userPassword) => {
   const key = await pbkdf2Promise(password, userSalt, 104999, 64, 'sha512');
   const hashedPassword = key.toString('base64');
   // console.log(hashedPassword === userPassword)
