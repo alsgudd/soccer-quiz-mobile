@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import authRouter from './routers/auth.js'
 import quizRouter from './routers/quiz.js'
 import chartRouter from './routers/chart.js'
+import myPageRouter from './routers/mypage.js'
 
 import cors from 'cors'
 import { fileURLToPath } from "url";   // 👈 추가
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth', authRouter);
 app.use('/quiz', quizRouter)
 app.use('/chart', chartRouter);
+app.use('/mypage', myPageRouter)
 
 app.listen(8080, function () {
   console.log(`listening on ${PORT}`);

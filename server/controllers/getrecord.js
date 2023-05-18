@@ -3,6 +3,7 @@ import {
   getDB,
   disconnectFromMongo
 } from "../db/db.js"
+import jwt from "jsonwebtoken";
 
 const getrecord = async (req, res) => {
   try {

@@ -1,6 +1,10 @@
+import axios from "axios";
+import { useEffect } from "react"
 import { isIosNotch } from "src/utils";
+
 import { Content, AnimationLoader } from "components/Molecules";
 import Atoms from "components/Atoms";
+
 import { useNavigate } from "react-router";
 import { FaHome } from "react-icons/fa";
 
@@ -10,6 +14,11 @@ const MypageTitleAnimation = () => {
     <FaHome style={{ cursor: "pointer" }}
       onClick={() => navigate("/")} />;
 
+  useEffect(() => {
+    axios({
+      
+    })
+  }, [])
   return (
     <Content
       marginTop="0px"

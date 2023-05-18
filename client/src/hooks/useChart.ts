@@ -19,7 +19,7 @@ const useChart = () => {
       method: "GET",
       withCredentials: true,
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       setChart(response.data.charts);
       setStatus(200);
     }).catch((e) => {

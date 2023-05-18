@@ -20,6 +20,7 @@ const useMyPage = () => {
       setRecord(response.data.record);
       setStatus(200);
     }).catch((e) => {
+      console.error(e);
       setStatus(404);
     })
   }, [])
