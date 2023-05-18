@@ -1,4 +1,5 @@
 import axios from "axios";
+import { calculateScore } from "src/utils";
 
 
 
@@ -7,10 +8,13 @@ const saveInCollction = (
   duration: number,
   quizTeam: string | undefined,
 ): any => {
+  const score = calculateScore(correctQuizNumbers, duration);
+
   const body = {
     correctQuizNumbers: correctQuizNumbers,
     duration: duration,
-    quizTeam: quizTeam 
+    quizTeam: quizTeam,
+    score: score
   }
 
   

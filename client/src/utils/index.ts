@@ -5,6 +5,7 @@ import validateLogin from "./validateLogin";
 import validateSignUp from "./validateSignUp";
 import saveInCollction from "./saveInCollection";
 import getOrdinalSuffix from "./getOrdinalSuffix";
+import calculateScore from "./calculateScore";
 
 export {
   getQueryData,
@@ -13,5 +14,6 @@ export {
   validateLogin,
   validateSignUp,
   saveInCollction,
-  getOrdinalSuffix
+  getOrdinalSuffix,
+  calculateScore
 }
