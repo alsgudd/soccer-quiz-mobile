@@ -16,11 +16,12 @@ const SForm = styled.form<CSSProperties>`
   padding: 2rem;
   background-color: var(--white);
   height: ${({ height }) => height || "400px"};
+  margin-top: ${({ marginTop }) => marginTop};
 `
 
 const Form = ({ height, marginTop, children, onSubmit }: FormProps) => {
   return (
-    <SForm height={height} onSubmit={onSubmit}>
+    <SForm height={height} onSubmit={onSubmit} marginTop={marginTop}>
       <Atoms.Div
         display="flex"
         flexDirection="column"

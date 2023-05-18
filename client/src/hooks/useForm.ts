@@ -12,6 +12,9 @@ interface ErrorType {
   name?: string;
   email?: string;
   password?: string;
+  currentPassword?: string;
+  passwordToChange?: string;
+  confirmPassword?: string;
 }
 interface useFormArg {
   initialValues: FormProps;

@@ -6,6 +6,7 @@ import { useForm } from "src/hooks";
 import { validateUpdate } from "src/utils";
 import { useNavigate } from "react-router";
 
+import { FaTimes } from "react-icons/fa";
 
 interface UpdateModalProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ const MypageUpdateModal = ({
       passwordToChange: "",
       confirmPassword: ""
     },
-    onSubmit: (values) => {  
+    onSubmit: (values) => {
       const serverURL = process.env.REACT_APP_SERVER_URL;
       const body = {
         currentPassword: values.currentPassword,
@@ -48,7 +49,7 @@ const MypageUpdateModal = ({
         navigate('/login');
         window.location.reload();
       }).catch((e) => {
-        if(e.response.data.error) {
+        if (e.response.data.error) {
           window.alert(e.response.data.error);
           navigate('/');
           window.location.reload();
@@ -58,10 +59,10 @@ const MypageUpdateModal = ({
     validate: validateUpdate
   })
 
- 
+
 
   return (
-    <Modal 
+    <Modal
       isOpen={isOpen}
       height="400px"
     >
@@ -71,11 +72,28 @@ const MypageUpdateModal = ({
         alignItems="center"
         justifyContent="center"
         height="100%"
+        position="relative"
       >
         <Atoms.Title margin="16px 0px 16px 0px">
           MODIFY PASSWORD
         </Atoms.Title>
-        <Form onSubmit={handleSubmit}>
+        <Atoms.Button
+          position="absolute"
+          top="42px"
+          right="18px"
+          onClick={onClose}
+          background="none"
+          border="none"
+          cursor="pointer"
+          zIndex={1}
+          fontSize="32px"
+        >
+          <FaTimes />
+        </Atoms.Button>
+        <Form 
+          onSubmit={handleSubmit}
+          marginTop="-20px"
+        >
           <Atoms.Span>Current Password</Atoms.Span>
           <Atoms.Input
             type="password"
@@ -83,6 +101,12 @@ const MypageUpdateModal = ({
             value={values.currentPassword}
             onChange={handleChange}
           />
+          {
+            errors.currentPassword && 
+            <Atoms.Span color="var(--red-400)" fontSize="8px">
+              {errors.currentPassword}
+            </Atoms.Span>
+          }
           <Atoms.Span>Password To Change</Atoms.Span>
           <Atoms.Input
             type="password"
@@ -90,6 +114,12 @@ const MypageUpdateModal = ({
             value={values.passwordToChange}
             onChange={handleChange}
           />
+          {
+            errors.passwordToChange && 
+            <Atoms.Span color="var(--red-400)" fontSize="8px">
+              {errors.passwordToChange}
+            </Atoms.Span>
+          }
           <Atoms.Span>Confirm Password To Change</Atoms.Span>
           <Atoms.Input
             type="password"
@@ -97,11 +127,18 @@ const MypageUpdateModal = ({
             value={values.confirmPassword}
             onChange={handleChange}
           />
+          {
+            errors.confirmPassword && 
+            <Atoms.Span color="var(--red-400)" fontSize="8px">
+              {errors.confirmPassword}
+            </Atoms.Span>
+          }
+          <br />
           <Atoms.Button
-            marginTop="16px"
+            marginTop="-8px"
             type="submit"
             designType="primary400"
-            height="40px"
+            height="42px"
             width="cal(100% - 10px)"
             borderRadius="8px"
             fontSize="18px"
@@ -113,7 +150,6 @@ const MypageUpdateModal = ({
       </Atoms.Div>
     </Modal>
   )
-
 }
 
 export default MypageUpdateModal;

@@ -28,12 +28,13 @@ const LoginForm = () => {
   } = useForm({
     initialValues: { email: "", password: "" },
     onSubmit: (values) => {
+      const serverURL = process.env.REACT_APP_SERVER_URL;
       const body = {
         email: values.email,
         password: values.password
       }
       axios({
-        url: `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+        url: `${serverURL}/auth/login`,
         method: "POST",
         withCredentials: true,
         data: body
