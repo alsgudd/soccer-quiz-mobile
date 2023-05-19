@@ -7,5 +7,6 @@ const Router = express.Router();
 
 Router.get('/record', getrecord);
 Router.get('/name', getname);
-Router.put('/modify', modifyPassword)
+Router.put('/modify', modifyPassword);
+
 export default Router;

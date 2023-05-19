@@ -32,7 +32,7 @@ const MypageUpdateModal = ({
       passwordToChange: "",
       confirmPassword: ""
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const serverURL = process.env.REACT_APP_SERVER_URL;
       const body = {
         currentPassword: values.currentPassword,
@@ -45,15 +45,28 @@ const MypageUpdateModal = ({
         data: body,
         withCredentials: true,
       }).then((response) => {
+        console.log(response);
         window.alert('Password change completed. Please log in again. 👋');
+
+        return axios({
+          url: `${serverURL}/auth/logout`,
+          method: "GET",
+          withCredentials: true,
+        })
+      }).then((response) => {
+        console.log(response);
         navigate('/login');
         window.location.reload();
       }).catch((e) => {
-        if (e.response.data.error) {
-          window.alert(e.response.data.error);
-          navigate('/');
-          window.location.reload();
-        }
+        console.log(e);
+        if (e.response.status === 402 && e.response.data.error) {
+          const message = `${e.response.data.error} Please check again. 😎`
+          window.alert(message);
+        } else if (e.response.status === 401 && e.response.data.error) {
+          const message = `${e.response.data.error} Please Login again. 😎`
+          window.alert(message);
+          navigate('/login');
+        } 
       })
     },
     validate: validateUpdate
@@ -90,7 +103,7 @@ const MypageUpdateModal = ({
         >
           <FaTimes />
         </Atoms.Button>
-        <Form 
+        <Form
           onSubmit={handleSubmit}
           marginTop="-20px"
         >
@@ -102,7 +115,7 @@ const MypageUpdateModal = ({
             onChange={handleChange}
           />
           {
-            errors.currentPassword && 
+            errors.currentPassword &&
             <Atoms.Span color="var(--red-400)" fontSize="8px">
               {errors.currentPassword}
             </Atoms.Span>
@@ -115,7 +128,7 @@ const MypageUpdateModal = ({
             onChange={handleChange}
           />
           {
-            errors.passwordToChange && 
+            errors.passwordToChange &&
             <Atoms.Span color="var(--red-400)" fontSize="8px">
               {errors.passwordToChange}
             </Atoms.Span>
@@ -128,7 +141,7 @@ const MypageUpdateModal = ({
             onChange={handleChange}
           />
           {
-            errors.confirmPassword && 
+            errors.confirmPassword &&
             <Atoms.Span color="var(--red-400)" fontSize="8px">
               {errors.confirmPassword}
             </Atoms.Span>

@@ -23,14 +23,14 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cors({
   origin: 'http://localhost:3000',
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   // 사용자와의 통신에서 쿠키를 사용해서 통신할 예정이기 때문에.
   credentials: true
 }));
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(bodyParser.urlencoded({ extended: true }));
-
+// app.use(bodyParser.json());
 
 app.use('/auth', authRouter);
 app.use('/quiz', quizRouter)
