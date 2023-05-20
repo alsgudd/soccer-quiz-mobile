@@ -1,4 +1,3 @@
-import { MongoClient } from 'mongodb';
 import crypto from 'crypto'
 import util from 'util'
 
@@ -7,16 +6,6 @@ import {
   getDB,
   disconnectFromMongo
 } from "../db/db.js";
-
-
-
-
-const MONGO_URI = process.env.MONGO_URI;
-const DB_NAME = process.env.DATABASE_NAME
-
-const client = new MongoClient(MONGO_URI);
-const db = client.db(DB_NAME);
-const collection = db.collection('userInfo');
 
 const randomBytesPromise = util.promisify(crypto.randomBytes);
 const pbkdf2Promise = util.promisify(crypto.pbkdf2);
@@ -36,7 +25,7 @@ export const createHashedPassword = async (password) => {
   const salt = await createSalt();
   const key = await pbkdf2Promise(password, salt, 104999, 64, 'sha512');
   const hashedPassword = key.toString('base64');
-
+  
   return { hashedPassword, salt };
 }
 
@@ -67,12 +56,12 @@ async function performDBOperation(enteredValue) {
     const collection = db.collection('userInfo');
     const isEmailExist = await collection.findOne({ email: enteredValue.email });
     if(isEmailExist) throw new Error("Email Already Exist!");
-    const { secretPW, salt } = await createHashedPassword(enteredValue.password);
+    const { hashedPassword, salt } = await createHashedPassword(enteredValue.password);
 
     const insertDoc = {
       name: enteredValue.name,
       email: enteredValue.email,
-      password: secretPW,
+      password: hashedPassword,
       salt: salt
     }
 
