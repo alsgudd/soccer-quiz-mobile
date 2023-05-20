@@ -6,13 +6,37 @@ import { Content, AnimationLoader } from "components/Molecules";
 import Atoms from "components/Atoms";
 
 import { useNavigate } from "react-router";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaSignOutAlt } from "react-icons/fa";
 
 const MypageTitleAnimation = () => {
   const navigate = useNavigate();
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+
+  const handleClickToSignOut = () => {
+    const result = window.confirm("Are you sure you want to log out?");
+    if(result) {
+      axios({
+        url: `${serverURL}/auth/logout`,
+        method: "GET",
+        withCredentials: true,
+      }).then((response) => {
+        window.alert("Logout Success! See you again😊");
+        navigate('/');
+      }).catch((e) => {
+        window.alert("An unknown error has occurred. Please try again");
+      })
+    } 
+  }
   const FaHomeIcon: JSX.Element =
     <FaHome style={{ cursor: "pointer" }}
       onClick={() => navigate("/")} />;
+
+  const FaSignOut: JSX.Element = 
+    <FaSignOutAlt style={{ cursor: "pointer" }} 
+      onClick={handleClickToSignOut}/>
+
+
+  
 
   useEffect(() => {
     axios({
@@ -24,6 +48,7 @@ const MypageTitleAnimation = () => {
       marginTop="0px"
       height={`calc(100% - 124px - 124px - ${isIosNotch() ? '96px' : '80px'})`}
       header={FaHomeIcon}
+      headerRight={FaSignOut}
     >
       <Atoms.Div
         display="flex"

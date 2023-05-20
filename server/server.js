@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-import connectdb from './db/connectdb.js';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -39,8 +38,6 @@ app.use('/mypage', myPageRouter)
 
 app.listen(8080, function () {
   console.log(`listening on ${PORT}`);
-  // console.log(PORT);
-  connectdb();
 });
 
 app.use(express.static(path.join(__dirname, '../client/build')));
