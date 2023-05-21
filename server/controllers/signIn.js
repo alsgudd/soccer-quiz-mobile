@@ -47,7 +47,10 @@ const signIn = async (req, res) => {
 }
 
 export const verifyPassword = async (password, userSalt, userPassword) => {
-  const key = await pbkdf2Promise(password, userSalt, 104999, 64, 'sha512');
+  const hashRepeat = process.env.HASH_REPEAT;
+  const hashAlgorithm = process.env.HASH_ALGORITHM;
+  const hashLength = process.env.HASH_LENGTH;
+  const key = await pbkdf2Promise(password, userSalt, hashRepeat, hashLength, hashAlgorithm);
   const hashedPassword = key.toString('base64');
   if (hashedPassword === userPassword) return true;
   return false;
