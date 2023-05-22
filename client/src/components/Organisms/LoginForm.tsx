@@ -12,7 +12,7 @@ const LoginForm = () => {
   const { state } = useLocation();
   const setIsLoggedIn = useSetRecoilState(IsLoggedInState);
   const directPage = (name: string) => {
-    if(state) {
+    if (state) {
       navigate(state);
     } else {
       window.alert(`Nice to meet you, ${name} 👋`);
@@ -56,23 +56,26 @@ const LoginForm = () => {
   return (
     <Content>
       <Form height="300px" onSubmit={handleSubmit}>
-        <Atoms.Span>Email</Atoms.Span>
-        <Atoms.Input
-          type="email"
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-        />
-        {errors.email && <Atoms.Span color="var(--red-400)">{errors.email}</Atoms.Span>}
-        <Atoms.Span>Password</Atoms.Span>
-        <Atoms.Input
-          type="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-        />
-        {errors.password && <Atoms.Span color="var(--red-400)">{errors.password}</Atoms.Span>}
-
+        <Atoms.Label>
+          Email
+          <Atoms.Input
+            type="email"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+          />
+          {errors.email && <Atoms.Span color="var(--red-400)">{errors.email}</Atoms.Span>}
+        </Atoms.Label>
+        <Atoms.Label>
+          Password
+          <Atoms.Input
+            type="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+          />
+          {errors.password && <Atoms.Span color="var(--red-400)">{errors.password}</Atoms.Span>}
+        </Atoms.Label>
         <br />
         <Atoms.Button
           type="submit"
