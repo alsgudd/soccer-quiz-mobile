@@ -10,7 +10,7 @@ import chartRouter from './routers/chart.js'
 import myPageRouter from './routers/mypage.js'
 
 import cors from 'cors'
-import { fileURLToPath } from "url";   // 👈 추가
+import { fileURLToPath } from "url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -28,8 +28,8 @@ app.use(cors({
 }));
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
 
 app.use('/auth', authRouter);
 app.use('/quiz', quizRouter)
@@ -40,11 +40,11 @@ app.listen(8080, function () {
   console.log(`listening on ${PORT}`);
 });
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+})

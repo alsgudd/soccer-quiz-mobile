@@ -7,10 +7,16 @@ import Atoms from "components/Atoms";
 
 import { useNavigate } from "react-router";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { useRecoilValue } from "recoil";
+import { IsLoggedInState } from "src/recoil";
+
+
 
 const MypageTitleAnimation = () => {
   const navigate = useNavigate();
   const serverURL = process.env.REACT_APP_SERVER_URL;
+  const isLoggedIn = useRecoilValue(IsLoggedInState);
+
 
   const handleClickToSignOut = () => {
     const result = window.confirm("Are you sure you want to log out?");
@@ -39,9 +45,11 @@ const MypageTitleAnimation = () => {
   
 
   useEffect(() => {
-    axios({
-      
-    })
+    // user not login!
+    if(!isLoggedIn) {
+      window.alert("This page is only available to members. Go to the homepage.");
+      navigate('/');
+    }
   }, [])
   return (
     <Content

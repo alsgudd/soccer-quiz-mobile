@@ -46,8 +46,10 @@ const LoginForm = () => {
         }
       }).catch((e) => {
         console.log(e);
-        if (e.response.data.error) {
+        if (e.response?.data?.error) {
           window.alert(e.response.data.error);
+        } else {
+          window.alert("unknown Error Occur! Please try again! 🥲")
         }
       })
     },
