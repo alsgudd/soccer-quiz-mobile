@@ -13,6 +13,7 @@ const pbkdf2Promise = util.promisify(crypto.pbkdf2);
 const signIn = async (req, res) => {
   try {
     const result = await performDBOperation(req.body.email, req.body.password);
+    console.log(result);
     if(result.status !== 200) {
       const error = new Error(result.message);
       error.status = result.status;
@@ -42,15 +43,13 @@ const signIn = async (req, res) => {
       res.status(500).json(error);
     }
   } catch (error) {
+    console.log(error);
     res.status(error.status).json({ error: error.message });
   }
 }
 
 export const verifyPassword = async (password, userSalt, userPassword) => {
-  const hashRepeat = process.env.HASH_REPEAT;
-  const hashAlgorithm = process.env.HASH_ALGORITHM;
-  const hashLength = process.env.HASH_LENGTH;
-  const key = await pbkdf2Promise(password, userSalt, hashRepeat, hashLength, hashAlgorithm);
+  const key = await pbkdf2Promise(password, userSalt, 104999, 64, "sha512");
   const hashedPassword = key.toString('base64');
   if (hashedPassword === userPassword) return true;
   return false;
@@ -66,8 +65,8 @@ async function performDBOperation(enteredEmail, enteredPassword) {
     
     const isCorrectPW = await verifyPassword(enteredPassword, userInfo.salt, userInfo.password);
     if(!isCorrectPW) throw new Error("Password does not match. Please check again.");
-
-    const { password, salt, ...others} = userInfo
+    
+    const { password, salt, ...others} = userInfo;
     return {
       status: 200,
       message: "The information entered by the user is valid.",
@@ -84,6 +83,11 @@ async function performDBOperation(enteredEmail, enteredPassword) {
         status: 403, 
         message: error.message 
       };
+    } else {
+      return {
+        status: 500,
+        message: "Unknown Error Occur..."
+      }
     }
   } finally {
     disconnectFromMongo();

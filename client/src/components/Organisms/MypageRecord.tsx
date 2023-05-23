@@ -14,7 +14,7 @@ const MypageRecord = () => {
 
   useEffect(() => {
     if(status === 404) {
-      window.alert('Token Expired! Move to Home!')
+      window.alert('This page is only available to members. Go to the homepage.')
       navigate('/');
       window.location.reload();
     }

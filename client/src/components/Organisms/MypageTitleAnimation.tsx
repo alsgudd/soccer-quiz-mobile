@@ -15,7 +15,6 @@ import { IsLoggedInState } from "src/recoil";
 const MypageTitleAnimation = () => {
   const navigate = useNavigate();
   const serverURL = process.env.REACT_APP_SERVER_URL;
-  const isLoggedIn = useRecoilValue(IsLoggedInState);
 
 
   const handleClickToSignOut = () => {
@@ -46,10 +45,10 @@ const MypageTitleAnimation = () => {
 
   useEffect(() => {
     // user not login!
-    if(!isLoggedIn) {
-      window.alert("This page is only available to members. Go to the homepage.");
-      navigate('/');
-    }
+    // if(!isLoggedIn) {
+    //   window.alert("This page is only available to members. Go to the homepage.");
+    //   navigate('/');
+    // }
   }, [])
   return (
     <Content

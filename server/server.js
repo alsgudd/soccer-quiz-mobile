@@ -16,7 +16,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 
 app.use(express.json());
@@ -36,15 +36,20 @@ app.use('/quiz', quizRouter)
 app.use('/chart', chartRouter);
 app.use('/mypage', myPageRouter)
 
-app.listen(8080, function () {
-  console.log(`listening on ${PORT}`);
-});
-
-
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.send("Deployed! 🚀");
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-})
+// app.listen(PORT, function () {
+//   console.log(`listening on ${PORT}`);
+// });
+
+app.listen(PORT, "0.0.0.0");
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// })
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// })

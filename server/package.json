@@ -16,5 +16,11 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.4.0",
     "rand-token": "^1.0.1"
+  },
+  "scripts": {
+    "start": "npm install && node server.js"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.2.7"
   }
 }
