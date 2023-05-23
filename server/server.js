@@ -19,14 +19,15 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 
-app.use(express.json());
 app.use(cors({
-  origin: ['https://soccer-quiz-mobile.vercel.app/', 'https://soccer-quiz-mobile-k6uzoyb59-alsgudd.vercel.app/'],
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   // 사용자와의 통신에서 쿠키를 사용해서 통신할 예정이기 때문에.
   credentials: true
 }));
-app.use(cookieParser())
+
+app.use(cookieParser());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
