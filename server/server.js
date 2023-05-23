@@ -40,11 +40,9 @@ app.get('/', (req, res) => {
   res.send("Deployed! 🚀");
 })
 
-// app.listen(PORT, function () {
-//   console.log(`listening on ${PORT}`);
-// });
-
-app.listen(PORT, "0.0.0.0");
+app.listen(PORT, function () {
+  console.log(`listening on ${PORT}`);
+});
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
