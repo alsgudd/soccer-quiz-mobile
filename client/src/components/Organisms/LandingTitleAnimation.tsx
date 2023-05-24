@@ -39,6 +39,7 @@ const LandingTitleAnimation = () => {
       window.alert('Your session has expired. Go to the login page.');
       navigate('/login')
     }
+    console.log(isLoggedIn);
   }, [isLoggedIn, status])
 
   return (

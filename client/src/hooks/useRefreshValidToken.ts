@@ -21,7 +21,7 @@ const useRefreshValidToken = () => {
     })
       .then((response) => {
         setStatus(200);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
       })
       .catch((e) => {
         if (e.response.status === 404) {
