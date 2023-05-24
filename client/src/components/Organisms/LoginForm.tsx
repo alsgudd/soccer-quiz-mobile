@@ -29,7 +29,6 @@ const LoginForm = () => {
     initialValues: { email: "", password: "" },
     onSubmit: (values) => {
       const serverURL = process.env.REACT_APP_SERVER_URL;
-      console.log(serverURL);
       const body = {
         email: values.email,
         password: values.password
