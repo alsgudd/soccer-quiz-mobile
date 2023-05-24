@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 8080;
 
 
 app.use(cors({
-  origin: "https://soccer-quiz-mobile.vercel.app/",
+  origin: ["https://soccer-quiz-mobile.vercel.app", ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   // 사용자와의 통신에서 쿠키를 사용해서 통신할 예정이기 때문에.
   credentials: true
