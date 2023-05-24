@@ -7,7 +7,7 @@ import Atoms from "components/Atoms";
 
 import { useNavigate } from "react-router";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { IsLoggedInState } from "src/recoil";
 
 
@@ -15,7 +15,7 @@ import { IsLoggedInState } from "src/recoil";
 const MypageTitleAnimation = () => {
   const navigate = useNavigate();
   const serverURL = process.env.REACT_APP_SERVER_URL;
-
+  const setIsLoggedIn = useSetRecoilState(IsLoggedInState);
 
   const handleClickToSignOut = () => {
     const result = window.confirm("Are you sure you want to log out?");
@@ -26,6 +26,7 @@ const MypageTitleAnimation = () => {
         withCredentials: true,
       }).then((response) => {
         window.alert("Logout Success! See you again😊");
+        setIsLoggedIn(false);
         navigate('/');
       }).catch((e) => {
         window.alert("An unknown error has occurred. Please try again");
