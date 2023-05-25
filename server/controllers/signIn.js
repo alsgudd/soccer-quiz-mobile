@@ -30,8 +30,9 @@ const signIn = async (req, res) => {
       })
       // Send Token in Cookie
       res.cookie('accessToken', accessToken, {
-        secure,
-        SameSite: "None"
+        sameSite: 'none',
+        secure: true,
+        httpOnly: true,
         // Cannot Access In JS(Client)
         // httpOnly: true,
         // sameSite: "none",
