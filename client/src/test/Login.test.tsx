@@ -1,5 +1,6 @@
 import { screen, render, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import { LoginForm } from "src/components/Organisms";
 import axios from "axios";
 
@@ -12,7 +13,9 @@ describe("Testing LoginForm...", () => {
   test("When user don't type anything", () => {
     render(
       <BrowserRouter>
-        <LoginForm />
+        <RecoilRoot>
+          <LoginForm />
+        </RecoilRoot>
       </BrowserRouter>
     );
     const button = screen.getByRole("button");
@@ -26,7 +29,9 @@ describe("Testing LoginForm...", () => {
   test("When a user does not enter a valid email type & at least 8 character for the password", () => {
     render(
       <BrowserRouter>
-        <LoginForm />
+        <RecoilRoot>
+          <LoginForm />
+        </RecoilRoot>
       </BrowserRouter>
     );
     const emailInput = screen.getByLabelText("Email");
@@ -47,11 +52,11 @@ describe("Testing LoginForm...", () => {
   test("When user enter correct email && password", async () => {
     render(
       <BrowserRouter>
-        <LoginForm />
+        <RecoilRoot>
+          <LoginForm />
+        </RecoilRoot>
       </BrowserRouter>
     );
-
-
     const response = { data: { name: "Bob" }};
     (axios.post as jest.Mock).mockImplementation(() => Promise.resolve(response));
     const emailInput = screen.getByLabelText("Email");
@@ -59,18 +64,21 @@ describe("Testing LoginForm...", () => {
     const button = screen.getByRole("button");
     const value = {
       email: "admin@naver.com",
-      password: 123456789,
+      password: "123456789",
     }
     fireEvent.change(emailInput, { target: { value: "admin@naver.com" } });
     fireEvent.change(pwInput, { target: { value: 123456789 } });
 
     fireEvent.click(button);
-    return postAxios(value).then(data => expect(data.name).toEqual("Bob"));
+    window.alert = jest.fn();
+    await waitFor(() => {
+      postAxios(value).then(data => expect(data.name).toEqual("Bob"));
+    })
   })
 
 })
 
-const postAxios = async (value: { email: string, password: number }) => {
+const postAxios = async (value: { email: string, password: string }) => {
   const serverURL = process.env.REACT_SERVER_URL;
   const response = await axios.post(`${serverURL}/auth/login`, 
   { data: value },

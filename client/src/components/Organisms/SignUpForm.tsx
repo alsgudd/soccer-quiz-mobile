@@ -27,16 +27,13 @@ const SignUpForm = () => {
         email: values.email,
         password: values.password
       }
-      axios({
-        url: `${serverURL}/auth/signup`,
-        method: "POST",
-        data: body
+
+      axios.post(`${serverURL}/auth/signup`, body, {
+        withCredentials: true
       }).then((response) => {
-        // console.log(response.data);
         window.alert('SignUp Success! Please Login😊');
         navigate('/login');
       }).catch((e) => {
-        // console.log(e);
         if (e.response.data.error) {
           window.alert(e.response.data.error);
         }
@@ -48,37 +45,45 @@ const SignUpForm = () => {
   return (
     <Content>
       <Form height="300px" onSubmit={handleSubmit}>
-        <Atoms.Span>Name</Atoms.Span>
-        <Atoms.Input
-          type="name"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-        />
-        {errors.name && <Atoms.Span color="var(--red-400)">{errors.name}</Atoms.Span>}
-        <Atoms.Span>Email</Atoms.Span>
-        <Atoms.Input
-          type="email"
-          name="email"
-          value={values.email}
-          onChange={handleChange}
-        />
-        {errors.email && <Atoms.Span color="var(--red-400)">{errors.email}</Atoms.Span>}
-        <Atoms.Span>Password</Atoms.Span>
-        <Atoms.Input
-          type="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-        />
-        <Atoms.Span>Confirm Password</Atoms.Span>
-        <Atoms.Input
-          type="password"
-          name="confirmPassword"
-          value={values.confirmPassword}
-          onChange={handleChange}
-        />
-        {errors.password && <Atoms.Span color="var(--red-400)">{errors.password}</Atoms.Span>}
+        <Atoms.Label>
+          Name
+          <Atoms.Input
+            type="name"
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+          />
+          {errors.name && <Atoms.Span color="var(--red-400)">{errors.name}</Atoms.Span>}
+        </Atoms.Label>
+        <Atoms.Label>
+          Email
+          <Atoms.Input
+            type="email"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+          />
+          {errors.email && <Atoms.Span color="var(--red-400)">{errors.email}</Atoms.Span>}
+        </Atoms.Label>
+        <Atoms.Label>
+          Password
+          <Atoms.Input
+            type="password"
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+          />
+        </Atoms.Label>
+        <Atoms.Label>
+          Confirm Password
+          <Atoms.Input
+            type="password"
+            name="confirmPassword"
+            value={values.confirmPassword}
+            onChange={handleChange}
+          />
+          {errors.password && <Atoms.Span color="var(--red-400)">{errors.password}</Atoms.Span>}
+        </Atoms.Label>
         <br />
         <Atoms.Button
           type="submit"
