@@ -21,7 +21,7 @@ const SForm = styled.form<CSSProperties>`
 
 const Form = ({ height, marginTop, children, onSubmit }: FormProps) => {
   return (
-    <SForm height={height} onSubmit={onSubmit} marginTop={marginTop}>
+    <SForm height={height} onSubmit={onSubmit} marginTop={marginTop} noValidate>
       <Atoms.Div
         display="flex"
         flexDirection="column"
