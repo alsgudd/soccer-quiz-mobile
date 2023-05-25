@@ -13,15 +13,13 @@ import Atoms from 'components/Atoms';
 const LandingQuizTeam = () => {
   const [quizTeam, setQuizTeam] = useRecoilState(QuizTeamState)
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setQuizDifficulty(e.target.value);
-    console.log(e.target.value);
     setQuizTeam(e.target.value);
   };
 
   return (
     <Content header="Team">
       <Atoms.Select
-        data-testid={DIFFICULTY_SELECT_TEST_ID}
+        data-testid="quizTeam"
         margin="16px 0px"
         value={quizTeam}
         onChange={handleChange}

@@ -15,6 +15,7 @@ const LandingQuizNumbers = () => {
   return (
     <Content header="Number of QUIZs(1 ~ 10)">
       <Atoms.Input
+        data-testid="quizNumber"
         type="number"
         placeholder="eg. 10"
         min='1'
