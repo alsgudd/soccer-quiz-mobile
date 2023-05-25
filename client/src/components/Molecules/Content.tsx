@@ -12,6 +12,7 @@ export type ContentProps = {
   body?: ReactNode;
   children?: ReactNode;
   overflow?: string;
+  width?: string;
 };
 
 const Content = ({
@@ -21,14 +22,15 @@ const Content = ({
   headerBorderBottom,
   headerRight,
   children,
-  overflow
+  overflow,
+  width
 }: ContentProps) => {
   const { platform } = getQueryData();
 
   return (
     <Atoms.Div
       height={height}
-      width="100%"
+      width={width || "100%"}
       background="var(--white)"
       marginTop={marginTop || '4px'}
       overflow={overflow}

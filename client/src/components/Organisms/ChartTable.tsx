@@ -28,7 +28,8 @@ const ChartTable = () => {
       marginTop="0px"
       height="100%"
       header={FaHomeIcon}
-      overflow="hidden"
+      width="100vw"
+      // overflow="hidden"
     >
       <Atoms.Title margin="16px 0px 0px 0px">
         THE HALL OF FAME🏆
@@ -68,7 +69,7 @@ const ChartTable = () => {
 
 const StyledTable = styled.table`
   width: 100%;
-  max-width: 700px;
+  // max-width: 700px;
   margin: auto;
   border-radius: 10px;
 `
