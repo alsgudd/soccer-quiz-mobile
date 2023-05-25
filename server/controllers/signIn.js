@@ -32,7 +32,7 @@ const signIn = async (req, res) => {
       res.cookie('accessToken', accessToken, {
         // secure: true,
         // Cannot Access In JS(Client)
-        httpOnly: true,
+        // httpOnly: true,
         // sameSite: "none",
       })
       res.status(200).json({

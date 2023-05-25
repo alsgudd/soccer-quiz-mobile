@@ -7,7 +7,7 @@ import Atoms from "components/Atoms";
 
 import { useNavigate } from "react-router";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { IsLoggedInState } from "src/recoil";
 
 
