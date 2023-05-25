@@ -33,12 +33,12 @@ const LoginForm = () => {
         email: values.email,
         password: values.password
       }
-      axios({
-        url: `${serverURL}/auth/login`,
-        method: "POST",
-        withCredentials: true,
-        data: body
-      }).then((response) => {
+
+      axios.post(
+        `${serverURL}/auth/login`, 
+        { data: body }, 
+        { withCredentials: true }
+      ).then((response) => {
         console.log(response);
         if (response.data.name) {
           setIsLoggedIn(true);
@@ -52,6 +52,26 @@ const LoginForm = () => {
           window.alert("unknown Error Occur! Please try again! 🥲")
         }
       })
+
+      // axios({
+      //   url: `${serverURL}/auth/login`,
+      //   method: "POST",
+      //   withCredentials: true,
+      //   data: body
+      // }).then((response) => {
+      //   console.log(response);
+      //   if (response.data.name) {
+      //     setIsLoggedIn(true);
+      //     directPage(response.data.name);
+      //   }
+      // }).catch((e) => {
+      //   console.log(e);
+      //   if (e.response?.data?.error) {
+      //     window.alert(e.response.data.error);
+      //   } else {
+      //     window.alert("unknown Error Occur! Please try again! 🥲")
+      //   }
+      // })
     },
     validate: validateLogin,
   });

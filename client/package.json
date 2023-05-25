@@ -13,6 +13,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "axios": "^1.4.0",
+    "axios-mock-adapter": "^1.21.4",
     "dotenv": "^16.0.3",
     "lottie-web": "^5.11.0",
     "react": "^18.2.0",
@@ -37,7 +38,7 @@
     "test": "craco test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": { 
+  "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
