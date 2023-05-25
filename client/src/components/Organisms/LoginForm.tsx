@@ -36,7 +36,7 @@ const LoginForm = () => {
 
       axios.post(
         `${serverURL}/auth/login`, 
-        { data: body }, 
+        body, 
         { withCredentials: true }
       ).then((response) => {
         console.log(response);
