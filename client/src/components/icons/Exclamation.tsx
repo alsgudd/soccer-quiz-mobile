@@ -11,7 +11,7 @@ export type IconProps = {
 const Exclamation = ({ size, style, background }: IconProps) => {
   const cStyle = { marginRight: 4 };
 
-  if (size == 'big') {
+  if (size === 'big') {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
