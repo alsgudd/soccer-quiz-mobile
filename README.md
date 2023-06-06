@@ -1,7 +1,8 @@
 # 축잘알 퀴즈 앱
 
+모바일 화면에 최적화되어있습니다. 모바일로 이용해주세요:)
 
-<img src="https://github.com/alsgudd/soccer-quiz-mobile/assets/106859397/c96df519-5c93-448b-a0b4-1a6a850611a7" width="220px" height="400px" />
+<img src="https://github.com/alsgudd/soccer-quiz-mobile/assets/106859397/af08c3c9-949f-4393-8cdd-44f125641d03" width="600px" />
 
 ### 🚀 배포링크
 Frontend : https://soccer-quiz-mobile.vercel.app/
