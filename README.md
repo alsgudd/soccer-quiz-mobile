@@ -1,6 +1,6 @@
 # 축잘알 퀴즈 앱
 
-모바일 화면에 최적화되어있습니다. 모바일로 이용해주세요:)
+모바일 화면에 최적화되어있습니다.
 
 <img src="https://github.com/alsgudd/soccer-quiz-mobile/assets/106859397/af08c3c9-949f-4393-8cdd-44f125641d03" width="600px" />
 
@@ -14,6 +14,7 @@ Backend : https://port-0-soccer-quiz-mobile-otjl2cli03spos.sel4.cloudtype.app/
 Frontend
 - `Typescript`, `React`
 - `Recoil`,  `Axios`
+<br />
 Backend
 - `Nodejs`, `Express`
 - `Jwt`
