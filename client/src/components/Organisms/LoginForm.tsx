@@ -12,7 +12,7 @@ const LoginForm = () => {
   const { state } = useLocation();
   const setIsLoggedIn = useSetRecoilState(IsLoggedInState);
   const directPage = (name: string) => {
-    if (state) {
+    if (state === '/result') {
       navigate(state);
     } else {
       window.alert(`Nice to meet you, ${name} 👋`);
